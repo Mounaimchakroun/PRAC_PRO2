@@ -1,6 +1,7 @@
 README
 
 Este proyecto está reservado bajo todos los derechos de código por Mounaim Chakroun. Sin embargo, se permite el libre uso del mismo para cualquier finalidad.
+
 Instrucciones de Uso
 
 Para ejecutar el código, asegúrese de tener en la misma carpeta las especificaciones y los objetos de cada módulo. Utilice el comando con el archivo makefile proporcionado.
