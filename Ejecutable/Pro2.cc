@@ -33,6 +33,7 @@
     ca. Luego se leen los datos del barco, es decir, qué producto quiere comprar y cuantas
     unidades, y qué producto quiere vender y cuantas unidades. Estos datos iniciales no
     contienen situaciones erróneas.
+    
     A partir de este momento las acciones que se pueden realizar son las siguientes:
 
     ------------------------------------------------------------------------------------------
