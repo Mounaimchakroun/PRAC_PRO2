@@ -1,8 +1,14 @@
+/** @file Error_Module.hh
+    @brief Especificación del módulo encargado de los errores.
+*/
+
 #ifndef HEADERFILE_ERROR_MODULE
 #define HEADERFILE_ERROR_MODULE
 
+#ifndef NO_DIAGRAM
 #include <iostream> 
 using namespace std;
+#endif
 
 /**
  * @brief Notifica un error especificado por su número.

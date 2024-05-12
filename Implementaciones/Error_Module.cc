@@ -1,3 +1,7 @@
+/** @file Error_Module.cc
+    @brief Implementación de Error_Module.
+*/
+
 #include "Error_Module.hh"
 
 void error_notification(int num){

@@ -1,3 +1,7 @@
+/** @file Cjt_Productos.cc
+    @brief Implementación de Cjt_Productos.
+*/
+
 #include "Cjt_Productos.hh"
 
 Cjt_Productos::Cjt_Productos(){

@@ -1,3 +1,7 @@
+/** @file Barco.cc
+    @brief Implementación de Barco.
+*/
+
 #include "Barco.hh"
 
 //FUNCIONES PUBLICAS

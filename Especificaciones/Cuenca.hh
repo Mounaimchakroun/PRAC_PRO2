@@ -1,10 +1,16 @@
+/** @file Cuenca.hh
+    @brief Especificación de Cuenca.
+*/
+
 #ifndef HEADERFILE_CUENCA
 #define HEADERFILE_CUENCA
 
 #include "Ciudad.hh"
 #include "Barco.hh"
 
+#ifndef NO_DIAGRAM
 #include "BinTree.hh"
+#endif
 
 class Cuenca      
 {

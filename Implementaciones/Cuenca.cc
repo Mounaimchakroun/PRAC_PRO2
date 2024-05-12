@@ -1,3 +1,7 @@
+/** @file Cuenca.cc
+    @brief Implementación de Cuenca.
+*/
+
 #include "Cuenca.hh"
 
 

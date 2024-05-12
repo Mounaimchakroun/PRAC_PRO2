@@ -1,9 +1,15 @@
+/** @file Cjt_Productos.hh
+    @brief Especificación de Cjt_Productos.
+*/
+
 #ifndef HEADERFILE_CJT_PRODUCTOS
 #define HEADERFILE_CJT_PRODUCTOS
 
+#ifndef NO_DIAGRAM
 #include <iostream>
 #include <map>
 #include "Error_Module.hh"
+#endif
 
 using namespace std;
 

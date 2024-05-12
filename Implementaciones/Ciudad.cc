@@ -1,3 +1,7 @@
+/** @file Ciudad.cc
+    @brief Implementación de Ciudad.
+*/
+
 #include "Ciudad.hh"
 
 Ciudad::Ciudad(){

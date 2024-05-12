@@ -1,8 +1,15 @@
+/** @file Ciudad.hh
+    @brief Especificación de Ciudad.
+*/
+
 #ifndef HEADERFILE_CIUDAD
 #define HEADERFILE_CIUDAD
 
-#include "Cjt_Productos.hh"
+#ifndef NO_DIAGRAM
 #include <map>
+#endif
+
+#include "Cjt_Productos.hh"
 
 class Ciudad
 {

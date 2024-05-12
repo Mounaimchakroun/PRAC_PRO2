@@ -1,10 +1,13 @@
+/** @file Barco.hh
+    @brief Especificación de Barco.
+*/
+
 #ifndef HEADERFILE_BARCO
 #define HEADERFILE_BARCO
 
 #include "Cjt_Productos.hh"
 
 #ifndef NO_DIAGRAM
-#define NO_DIAGRAM
 #include <list>
 #endif
 
