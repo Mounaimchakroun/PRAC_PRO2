@@ -70,6 +70,35 @@ bool Ciudad::modificar_prod_c(Cjt_Productos& Productos,int id_producto, int unid
     }
 }
 
+bool Ciudad::modificar_prod_c_sin_notificacion_de_error(Cjt_Productos& Productos,int id_producto, int unidades_poseidas, int unidades_necesarias){
+    if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) {
+        //Informacion no valida con errores
+        return false;
+    }
+    
+    this->_it_Inventario = this->_Inventario.find(id_producto);
+
+    if (this->_it_Inventario == this->_Inventario.end()) {
+        return false;
+    }
+    else {
+        // Pair del producto (peso y volumen del producto)
+        pair<int,int> peso_volumen_del_producto = Productos.consultar_producto_del_conjunto(id_producto);
+        //Decrementamos el peso y volumen de los paramentros anteriores
+        this->_peso_total -= peso_volumen_del_producto.first * (this->_it_Inventario->second.first);
+        this->_volumen_total -= peso_volumen_del_producto.second * (this->_it_Inventario->second.first);
+
+        //Incrementamos el peso y volumen total con los nuevos parametros
+        this->_peso_total += peso_volumen_del_producto.first * unidades_poseidas;
+        this->_volumen_total += peso_volumen_del_producto.second * unidades_poseidas;
+
+        //Introducimos el pair modificado de las unidades poseidas y necesarias del producto
+        this->_Inventario[id_producto] = make_pair(unidades_poseidas,unidades_necesarias);
+        //Informacion valida sin errores
+        return true;
+    }
+}
+
 bool Ciudad::quitar_prod_c(Cjt_Productos& Productos,int id_producto){
     
     this->_it_Inventario = this->_Inventario.find(id_producto);
@@ -109,6 +138,22 @@ bool Ciudad::consultar_prod_c(int id_producto, pair<int,int>& info_producto) con
 
     if (aux_it_Inventario == this->_Inventario.end()) {
         error_notification(5);
+        //Informacion no valida con errores
+        return false;
+    }
+    else {
+        //Proporcionamos la informacion de la cantidad de producto que tiene y la que necesita
+        info_producto = aux_it_Inventario->second;
+        //Informacion valida sin errores
+        return true;
+    }
+}
+
+bool Ciudad::consultar_prod_c_sin_notificacion_de_errores(int id_producto, pair<int,int>& info_producto) const{
+
+    map<int,pair<int,int>>::const_iterator aux_it_Inventario = this->_Inventario.find(id_producto);
+
+    if (aux_it_Inventario == this->_Inventario.end()) {
         //Informacion no valida con errores
         return false;
     }

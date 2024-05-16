@@ -52,6 +52,12 @@ public:
 
       POST: 
     */
+    bool modificar_prod_c_sin_notificacion_de_error(Cjt_Productos& Productos,int id_producto, int unidades_poseidas, int unidades_necesarias);
+
+    /**PRE:
+
+      POST: 
+    */
     bool quitar_prod_c(Cjt_Productos& Productos,int id_producto);
 
     /**PRE:
@@ -67,6 +73,12 @@ public:
       POST: 
     */
     bool consultar_prod_c(int id_producto, pair<int,int>& info_producto) const;
+
+    /**PRE:
+
+      POST: 
+    */
+    bool consultar_prod_c_sin_notificacion_de_errores(int id_producto, pair<int,int>& info_producto) const;
 
     /**PRE:
 

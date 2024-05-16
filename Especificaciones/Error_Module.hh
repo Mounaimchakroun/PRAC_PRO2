@@ -13,7 +13,7 @@ using namespace std;
 /**
  * @brief Notifica un error especificado por su número.
  * 
- * @pre Hay un número del 1 al 8 que equivale a un error.
+ * @pre Hay un número del 1 al 9 que equivale a un error.
  * @post Devuelve por el canal de salida el error correspondiente.
  * 
  * @param num Número del error a notificar.
@@ -27,6 +27,7 @@ using namespace std;
  *   - (6) Unidades necesarias <= 0.
  *   - (7) Comando no disponible.
  *   - (8) No se puede comprar y vender el mismo producto.
+ *   - (9) ciudad repetida.
  */
 void error_notification(int num);
 

@@ -50,14 +50,19 @@ private:
       * @pre Introducimos el árbol binario del río y el barco
       * @post Nos proporciona la lista de nombres de ciudades donde estas forman la ruta más beneficiosa para el barco
     */
-    list<string> recorido_con_max_veneficio(const Cjt_Productos& Productos, const BinTree<string>& arbol_cuenca, const Barco& Barco);
+    list<string> recorido_con_max_beneficio(const Cjt_Productos& Productos, const BinTree<string>& arbol_cuenca, const Barco& Barco);
     
-
     /**
        Pre:
        Post:
     */
-    void aux_viajar(const BinTree<string>& arbol, vector<string>& my_vector, int id_prod_a_comprar, int id_prod_a_vender, int& productos_comprados, int& productos_vendidos);
+    BinTree<pair<string,pair<int,int>>> Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos, const BinTree<string>& nodo);
+    
+    /**
+       Pre:
+       Post:
+    */
+    void aux_viajar(Cjt_Productos &Productos, Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos);
     
 public:
     // CONSTRUCTORES / DESTRUCTORES:
@@ -152,12 +157,12 @@ public:
       * @pre Tenemos un río con ciudades y un barco
       * @post El barco busca la ruta con máximo beneficio y recorre dicha ruta vendiendo y comprando los productos ya indicados
     */
-    void hacer_viaje(const Cjt_Productos& Productos, const Barco& Barco);
+    void hacer_viaje(Cjt_Productos& Productos, Barco& Barco);
 
     // ESCRITURA
 
     /**
-      * @brief Consulta la información de un producto en el inventario de una ciudad
+      * @brief Consulta la información de un producto en el inventario de una ciudad avisando de fallos
       * @param Productos Conjunto de productos
       * @param id_ciudad ID de la ciudad
       * @param id_producto ID del producto
@@ -165,6 +170,16 @@ public:
       * @post Imprimimos por el canal de salida la información de dicho producto en el inventario de la ciudad
     */
     void consultar_prod(const Cjt_Productos& Productos, string id_ciudad, int id_producto);
+
+    /**
+      * @brief Consulta la información de un producto en el inventario de una ciudad sin avisar de fallos
+      * @param Productos Conjunto de productos
+      * @param id_ciudad ID de la ciudad
+      * @param id_producto ID del producto
+      * @pre Tenemos un conjunto de productos, el ID de una ciudad y el ID de un producto
+      * @post Imprimimos por el canal de salida la información de dicho producto en el inventario de la ciudad
+    */
+    void consultar_prod_c_sin_notificacion_de_errores(const Cjt_Productos& Productos, string id_ciudad, int id_producto);
 
     /**
       * @brief Escribe la información de una ciudad si existe

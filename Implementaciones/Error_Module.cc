@@ -15,6 +15,7 @@ void error_notification(int num){
     else if (num == 6) error = "unidades necesarias <= 0";
     else if (num == 7) error = "comando no disponible";
     else if (num == 8) error = "no se puede comprar y vender el mismo producto";
+    else if (num == 9) error = "ciudad repetida";
     
     cout << "error: " << error <<endl;
 }
