@@ -7,145 +7,189 @@
 
 //FUNCIONES PRIVADAS
 //#####################################################
-BinTree<pair<string,pair<int,int>>> Cuenca::Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos, const BinTree<string>& nodo){
+
+BinTree<pair<int,int>> Cuenca::Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo){
     // Caso Base ########################################################################################
-    if (nodo.empty()) return BinTree<pair<string,pair<int,int>>>();
-    // Paso Inductivo ###################################################################################
+    if (nodo.empty()) return BinTree<pair<int,int>>(); //Si el nodo es vacío
+    if (productos_a_comprar == 0 and productos_a_vender == 0) return BinTree<pair<int,int>>(); //No hay mas productos que vender
 
-    if ((productos_comprados > 0) and (productos_vendidos > 0)){
-        string id_ciudad = nodo.value(); //Id de ciudad actual
+    this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo.value()); //Buscamos la ciudad actual
 
-        this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
+    Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; //Obtenemos la ciudad actual
 
-        pair<int,int> info_prod_a_comprar;
-        bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_prod_a_comprar);
+    //Obtenemos las cantidades poseidas y neccesarias del producto que el barco quiere comprar y vender.
+    pair<int,int> info_produ_comprar;
+    bool proceder_c = ciudad_seleccionada.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_produ_comprar);
 
-        pair<int,int> info_prod_a_vender;
-        bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_prod_a_vender);
+    pair<int,int> info_produ_vender;
+    bool proceder_v = ciudad_seleccionada.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_produ_vender);
 
-        //###################################################################################################
-        if (productos_comprados > 0 and proceder_c){
-            int provisional = info_prod_a_comprar.first - info_prod_a_comprar.second;
-            
-            if (productos_comprados <= provisional){
-                productos_comprados = 0; 
+    //Variable de productos comprados y vendidos
+    int total_productos_comprados = 0;
+    int total_productos_vendidos = 0;
+    //Prodedemos los calculos
+
+    //Calculo de productos comprados en cada ciudad
+    if (proceder_c)
+    {
+        int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; //Obtenemos la cantidad que sobra
+        if (productos_sobrantes > 0){
+            if (productos_sobrantes >= productos_a_comprar){
+                total_productos_comprados = productos_a_comprar;
+                productos_a_comprar = 0;
             }
             else {
-                productos_comprados -= provisional; //Productos que sobran
+                total_productos_comprados = productos_sobrantes;
+                productos_a_comprar -= productos_sobrantes;
             }
         }
-        if (productos_vendidos > 0 and proceder_v){
-            int provisional = info_prod_a_vender.second - info_prod_a_vender.first;
+    }
 
-            if (productos_vendidos <= provisional){
-                productos_vendidos = 0; 
+    //Calculo de productos vendidos en cada ciudad
+    if (proceder_v)
+    {
+        int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; //Obtenemos la cantidad que neccesita
+        if (productos_neccesarios > 0){
+            if (productos_neccesarios >= productos_a_vender){
+                total_productos_vendidos = productos_a_vender;
+                productos_a_vender = 0;
             }
             else {
-                productos_vendidos -= provisional; //Productos que necesita
+                total_productos_vendidos = productos_neccesarios;
+                productos_a_vender -= productos_neccesarios;
             }
         }
-        //###################################################################################################
-
-        BinTree<pair<string,pair<int,int>>> izquierda = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_comprados,productos_vendidos, nodo.left());
-        BinTree<pair<string,pair<int,int>>> derecha = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_comprados,productos_vendidos, nodo.right());
-
-        return BinTree<pair<string,pair<int,int>>>(make_pair(id_ciudad,make_pair(productos_comprados,productos_vendidos)),izquierda,derecha);
     }
-    else {
-        return BinTree<pair<string,pair<int,int>>>();
-    }
-} 
 
-vector<pair<string,pair<int,int>>> recorido_arbol(const BinTree<pair<string,pair<int,int>>>& nodo){
-    if (nodo.empty()) return vector<pair<string,pair<int,int>>>();
+    pair<int,int> beneficio;
+    beneficio.first = total_productos_comprados;
+    beneficio.second = total_productos_vendidos;
 
-    vector<pair<string,pair<int,int>>> recorido_izquierda = recorido_arbol(nodo.left());
-    vector<pair<string,pair<int,int>>> recorido_derecha = recorido_arbol(nodo.right());
+    BinTree<pair<int,int>> arbol_izqueirda = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.left());
+    BinTree<pair<int,int>> arbol_derecha = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.right());
+
+    return BinTree<pair<int,int>>(beneficio,arbol_izqueirda,arbol_derecha);
+}
+
+
+list<pair<char,int>> recorido_arbol(const BinTree<pair<int,int>>& nodo){
+    if (nodo.empty()) return list<pair<char,int>>();
+
+    list<pair<char,int>> recorido_izquierda = recorido_arbol(nodo.left());
+    list<pair<char,int>> recorido_derecha = recorido_arbol(nodo.right());
 
     int beneficio_izquierda = 0, beneficio_derecha = 0;
     //beneficios por ruta
-    if (!recorido_izquierda.empty())
-        beneficio_izquierda = recorido_izquierda[recorido_izquierda.size()-1].second.first + recorido_izquierda[recorido_izquierda.size()-1].second.second;
-    if (!recorido_derecha.empty())
-        beneficio_derecha = recorido_derecha[recorido_derecha.size()-1].second.first + recorido_derecha[recorido_derecha.size()-1].second.second;
+    if (!recorido_izquierda.empty()) beneficio_izquierda = recorido_izquierda.front().second;
+    if (!recorido_derecha.empty()) beneficio_derecha = recorido_derecha.front().second;
     //###################
-   
-    if (beneficio_derecha < beneficio_izquierda){
-        recorido_derecha.push_back(nodo.value());
+
+    int beneficio_nodo_actual = nodo.value().first + nodo.value().second;
+
+    if (beneficio_derecha > beneficio_izquierda){
+        if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; //Incrementamos el beneficio
+        recorido_derecha.push_front(make_pair('d',beneficio_nodo_actual));
         return recorido_derecha;
     }
-    else if (beneficio_derecha > beneficio_izquierda){
-        recorido_izquierda.push_back(nodo.value());
+    else if (beneficio_derecha < beneficio_izquierda){
+        if (!recorido_izquierda.empty()) beneficio_nodo_actual += recorido_izquierda.begin()->second; //Incrementamos el beneficio
+        recorido_izquierda.push_front(make_pair('i',beneficio_nodo_actual));
         return recorido_izquierda;
     }
     else {
         if (recorido_derecha.size() < recorido_izquierda.size()){
-            recorido_derecha.push_back(nodo.value());
+            if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; //Incrementamos el beneficio
+            recorido_derecha.push_front(make_pair('d',beneficio_nodo_actual));
             return recorido_derecha;
         }
         else {
-            recorido_izquierda.push_back(nodo.value());
+            if (!recorido_izquierda.empty()) beneficio_nodo_actual += recorido_izquierda.begin()->second; //Incrementamos el beneficio
+            recorido_izquierda.push_front(make_pair('i',beneficio_nodo_actual));
             return recorido_izquierda;
         }
     }
 }
 
 
-void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos){
-    BinTree<pair<string,pair<int,int>>> Arbol_de_ventas = this->Obtener_arbol_de_ventas(id_prod_a_comprar, id_prod_a_vender, productos_comprados, productos_vendidos, this->_cuenca);
+void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender){
+    int productos_a_comprar = Barco.consultat_cantidad_a_comprar();
+    int productos_a_vender = Barco.consultat_cantidad_a_vender();
+    Productos.consultar_num();
+    BinTree<pair<int,int>> Arbol_de_ventas = this->Obtener_arbol_de_ventas(id_prod_a_comprar, id_prod_a_vender,productos_a_comprar,productos_a_vender,this->_cuenca);
+    list<pair<char,int>> ruta = recorido_arbol(Arbol_de_ventas);
 
-    vector<pair<string,pair<int,int>>> ruta = recorido_arbol(Arbol_de_ventas);
-    /*
-    this->_cuenca.setInputOutputFormat(3);
-    cout << _cuenca <<endl;
+    list<pair<char,int>> ::iterator it_list = ruta.begin();
 
-    for (int i = 0; i < ruta.size(); i++)
+    int aux_productos_a_comprar = productos_a_comprar;
+    int aux_productos_a_vender = productos_a_vender;
+
+    int beneficio_total = 0;
+
+    BinTree<string> nodo_actual = this->_cuenca;
+    string ultima_ciudad;
+
+    while ((aux_productos_a_comprar + aux_productos_a_vender > 0) and (it_list != ruta.end()) and (!nodo_actual.empty()))
     {
-        cout <<ruta[i].first <<": "<<ruta[i].second.first <<": "<<ruta[i].second.second<<endl;
-    }
-    */
-    int aux_productos_a_comprar = productos_comprados;
-    int aux_productos_a_vender = productos_vendidos;
+        ultima_ciudad = nodo_actual.value();
+        this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo_actual.value()); //Buscamos la ciudad actual
 
-    for (unsigned int i = 0; i < ruta.size(); i++)
-    {
-        pair<string,pair<int,int>> ciudad_actual = ruta[i];
-        //cout << "CITY: " << ruta[i].first << endl;
-        this->_it_mapa_ciudad = this->_mapa_ciudades.find(ciudad_actual.first);
+        Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; //Obtenemos la ciudad actual
 
-        pair<int,int> info_prod_a_comprar;
-        bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_prod_a_comprar);
+        pair<int,int> info_produ_comprar;
+        bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_produ_comprar);
 
-        pair<int,int> info_prod_a_vender;
-        bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_prod_a_vender);
+        pair<int,int> info_produ_vender;
+        bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_produ_vender);
 
-        if (proceder_c){
-            if (aux_productos_a_comprar >= info_prod_a_comprar.second - info_prod_a_comprar.first){
-                this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_prod_a_comprar.second,info_prod_a_comprar.second);
-                aux_productos_a_comprar -= info_prod_a_comprar.second - info_prod_a_comprar.first;
-            }
-            else {
-                this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_prod_a_comprar.first - aux_productos_a_comprar,info_prod_a_comprar.second);
-                aux_productos_a_comprar = 0;
+        if (proceder_c)
+        {
+            int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; //Obtenemos la cantidad que sobra
+            if (productos_sobrantes > 0){
+                if (productos_sobrantes >= productos_a_comprar){
+                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_a_comprar,info_produ_comprar.second);
+                    beneficio_total += productos_a_comprar;
+                    aux_productos_a_comprar = 0;
+                }
+                else {
+                    beneficio_total += productos_a_comprar;
+                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_sobrantes,info_produ_comprar.second);
+                    aux_productos_a_comprar -= productos_sobrantes;
+                }
             }
         }
-        if (proceder_v){
-            if (aux_productos_a_vender >= info_prod_a_comprar.first - info_prod_a_comprar.second){
-                this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_prod_a_comprar.second,info_prod_a_comprar.second);
-                aux_productos_a_vender -= info_prod_a_comprar.first - info_prod_a_comprar.second;
-            }
-            else {
-                this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_prod_a_comprar.first + aux_productos_a_vender,info_prod_a_comprar.second);
-                aux_productos_a_vender = 0;
+
+        //Calculo de productos vendidos en cada ciudad
+        if (proceder_v)
+        {
+            int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; //Obtenemos la cantidad que neccesita
+            if (productos_neccesarios > 0){
+                if (productos_neccesarios >= productos_a_vender){
+                    ciudad_seleccionada.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second);
+                    beneficio_total += productos_a_vender;
+                    aux_productos_a_vender = 0;
+                }
+                else {
+                    ciudad_seleccionada.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_neccesarios,info_produ_vender.second);
+                    beneficio_total += productos_neccesarios;
+                    aux_productos_a_vender -= productos_neccesarios;
+                }
             }
         }
+
+        if (it_list->first == 'i'){
+            nodo_actual = nodo_actual.left();
+        }
+        else {
+            nodo_actual = nodo_actual.right();
+        }
+        it_list++;
     }
 
-    if (!ruta.empty()){
-        Barco.agregar_ultima_ciudad_consultada(ruta[0].first);
-    }
+    cout << beneficio_total <<endl;
 
-    cout << (productos_comprados - aux_productos_a_comprar) <<" "<< (productos_vendidos - aux_productos_a_vender) <<endl;
+    Barco.agregar_ultima_ciudad_consultada(ultima_ciudad);
+
+
 }
 //#####################################################
 void Cuenca::aux_redistribuir(Cjt_Productos& Productos, const BinTree<string>& arbol_cuenca){
@@ -162,7 +206,7 @@ void Cuenca::aux_redistribuir(Cjt_Productos& Productos, const BinTree<string>& a
     }
 }
 
-BinTree<string> Cuenca::aux_lectura_rio(const Cjt_Productos& Productos,map<string,Ciudad>& new_map){ 
+BinTree<string> Cuenca::aux_lectura_rio(const Cjt_Productos& Productos,map<string,Ciudad>& new_map){
     string id_ciudad;
     cin >> id_ciudad;
 
@@ -201,7 +245,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
         error_notification(2);
         procedemos = false;
     }
-    
+
     int numero_de_elementos;
     int id_producto, unidades_poseidas, unidades_necesarias;
 
@@ -210,8 +254,8 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
     for (int i = 0; i < numero_de_elementos; i++)
     {
         cin >> id_producto;
-        cin >> unidades_poseidas >> unidades_necesarias; 
-        
+        cin >> unidades_poseidas >> unidades_necesarias;
+
         if (procedemos){
             if (unidades_necesarias > 0){
                 _it_mapa_ciudad->second.poner_prod_c(Productos, id_producto,unidades_poseidas,unidades_necesarias);
@@ -221,7 +265,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
             }
         }
     }
-    
+
 }
 
 void Cuenca::leer_inventarios(Cjt_Productos& Productos){
@@ -231,7 +275,7 @@ void Cuenca::leer_inventarios(Cjt_Productos& Productos){
     {
         leer_inventario(Productos, id);
     }
-    
+
 }
 
 void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto){
@@ -241,7 +285,7 @@ void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_produ
 
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
 
-    if (unidades_neccesarias > 0){  
+    if (unidades_neccesarias > 0){
         bool proceder = false;
 
         if (_it_mapa_ciudad != this->_mapa_ciudades.end())
@@ -262,7 +306,7 @@ void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_produ
                 cout << _it_mapa_ciudad->second.consultar_volumen_total();
                 cout<<endl;
             }
-        } 
+        }
     }
     else {
         error_notification(6);
@@ -276,7 +320,7 @@ void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_p
     cin >> unidades_poseidas >> unidades_neccesarias;
 
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
-    
+
     if (unidades_neccesarias > 0){
         bool proceder = false;
 
@@ -303,7 +347,7 @@ void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_p
     else {
         error_notification(6);
     }
-    
+
 }
 
 void Cuenca::quitar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto){
@@ -313,23 +357,23 @@ void Cuenca::quitar_prod(Cjt_Productos& Productos, string id_ciudad, int id_prod
         //Informacion no valida con errores
         return;
     }
-    
+
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
-    
+
     if (_it_mapa_ciudad == this->_mapa_ciudades.end()) {
         error_notification(2);
         return;
     }
 
     bool proceder = _it_mapa_ciudad->second.quitar_prod_c(Productos,id_producto);
-    
+
     if (proceder){
         //Imprimimos el peso y volumen total (PROVISIONAL)
         cout << _it_mapa_ciudad->second.consultar_peso_total();
         cout <<" ";
         cout << _it_mapa_ciudad->second.consultar_volumen_total();
         cout<<endl;
-    }   
+    }
 }
 
 void Cuenca::consultar_prod(const Cjt_Productos& Productos, string id_ciudad, int id_producto){
@@ -356,7 +400,7 @@ void Cuenca::consultar_prod(const Cjt_Productos& Productos, string id_ciudad, in
         cout <<" ";
         cout << pair_unidades_poseidas_necesarias.second;
         cout<<endl;
-    }   
+    }
 }
 
 void Cuenca::consultar_prod_c_sin_notificacion_de_errores(const Cjt_Productos& Productos, string id_ciudad, int id_producto){
@@ -385,7 +429,7 @@ void Cuenca::escribir_ciudad(string id_ciudad) const{
         error_notification(2);
         return;
     }
-   
+
     _it_mapa_ciudad_aux->second.escribir_ciudad_c();
 }
 
@@ -407,15 +451,12 @@ void Cuenca::comerciar(Cjt_Productos& Productos, string id_ciudad_1, string id_c
         error_notification(9);
         return;
     }
-    
+
     this->_it_mapa_ciudad->second.comerciar_c(Productos,it_mapa_ciudad_2->second);
 }
 
 void Cuenca::hacer_viaje(Cjt_Productos& Productos, Barco& Barco){
-    int productos_comprados = Barco.consultat_cantidad_a_comprar();
-    int productos_vendidos = Barco.consultat_cantidad_a_vender();
-
-    this->aux_viajar(Productos,Barco,Barco.cons_id_producto_a_comprar(),Barco.cons_id_producto_a_vender(),productos_comprados,productos_vendidos);
+    this->aux_viajar(Productos,Barco,Barco.cons_id_producto_a_comprar(),Barco.cons_id_producto_a_vender());
 }
 
 void Cuenca::redistribuir(Cjt_Productos& Productos){
