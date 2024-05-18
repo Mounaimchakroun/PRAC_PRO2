@@ -61,19 +61,19 @@ private:
     list<pair<char,int>> recorrido_con_max_beneficio(const BinTree<pair<int,int>>& nodo);
 
     /**
-     * @brief Obtiene un árbol de ventas basado en los productos a comprar y vender.
+     * @brief Obtiene un árbol de beneficios basado en los productos a comprar y vender.
      * 
      * @param id_prod_a_comprar ID del producto a comprar.
      * @param id_prod_a_vender ID del producto a vender.
      * @param productos_a_comprar Cantidad de productos a comprar.
      * @param productos_a_vender Cantidad de productos a vender.
      * @param nodo Nodo del árbol binario de la cuenca.
-     * @return Árbol binario de ventas.
+     * @return Árbol binario de beneficios.
      * 
      * @pre Tenemos un río con ciudades.
-     * @post Se obtiene un árbol binario que representa las ventas basadas en los productos a comprar y vender.
+     * @post Se obtiene un árbol binario que representa los beneficios basadas en los productos a comprar y vender.
      */
-    BinTree<pair<int,int>> obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo);
+    BinTree<pair<int,int>> obtener_arbol_de_beneficios(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo);
 
     /**
      * @brief Realiza un viaje comercial con un barco.
