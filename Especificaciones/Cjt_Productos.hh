@@ -1,5 +1,5 @@
 /** @file Cjt_Productos.hh
-    @brief Especificación de Cjt_Productos.
+    @brief Especificación de la clase Cjt_Productos.
 */
 
 #ifndef HEADERFILE_CJT_PRODUCTOS
@@ -13,14 +13,27 @@
 
 using namespace std;
 
+/**
+ * @class Cjt_Productos
+ * @brief Representa un conjunto de productos.
+ *
+ * La clase Cjt_Productos mantiene una estructura de datos que almacena información sobre varios productos.
+ */
 class Cjt_Productos {
 private:
-    // Estructura de datos de los productos
+    /**
+     * @brief Mapa de productos.
+     *
+     * El mapa utiliza como clave el ID del producto y como valor un par de enteros donde:
+     * - first: cantidad disponible del producto.
+     * - second: cantidad necesaria del producto.
+     */
     map<int, pair<int, int>> _map_productos;
-    // Iterador de map
+
+    /// Iterador constante para recorrer el mapa de productos.
     map<int, pair<int, int>>::const_iterator _it_map_productos;
 
-    // Número de productos actuales
+    /// Número actual de productos en el conjunto.
     int _num_productos_actuales = 0;
 
 public:
@@ -93,4 +106,4 @@ public:
     void escribir_producto(int id_producto);
 };
 
-#endif
+#endif // HEADERFILE_CJT_PRODUCTOS

@@ -8,93 +8,134 @@
 //FUNCIONES PRIVADAS
 //#####################################################
 
-BinTree<pair<int,int>> Cuenca::Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo){
+BinTree<pair<int,int>> Cuenca::obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo){
     // Caso Base ########################################################################################
-    if (nodo.empty()) return BinTree<pair<int,int>>(); //Si el nodo es vacío
-    if (productos_a_comprar == 0 and productos_a_vender == 0) return BinTree<pair<int,int>>(); //No hay mas productos que vender
+    
+    // Si el nodo es vacío
+    if (nodo.empty()) return BinTree<pair<int,int>>(); 
 
-    this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo.value()); //Buscamos la ciudad actual
+    // No hay más productos que vender
+    if (productos_a_comprar == 0 and productos_a_vender == 0) return BinTree<pair<int,int>>();
 
-    Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; //Obtenemos la ciudad actual
+    // Paso Inductivo ###################################################################################
 
-    //Obtenemos las cantidades poseidas y neccesarias del producto que el barco quiere comprar y vender.
+    // Buscamos la ciudad actual
+    this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo.value()); 
+
+    // Obtenemos la ciudad actual
+    Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; 
+
+    // Obtenemos las cantidades poseídas y necesarias del producto que el barco quiere comprar y vender.
     pair<int,int> info_produ_comprar;
-    bool proceder_c = ciudad_seleccionada.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_produ_comprar);
+    bool proceder_c = ciudad_seleccionada.consultar_prod_c(id_prod_a_comprar,info_produ_comprar, false);
 
     pair<int,int> info_produ_vender;
-    bool proceder_v = ciudad_seleccionada.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_produ_vender);
+    bool proceder_v = ciudad_seleccionada.consultar_prod_c(id_prod_a_vender,info_produ_vender, false);
+    //-------------------------------------------------------------------------------------------------
 
-    //Variable de productos comprados y vendidos
+    // Variable de productos comprados y vendidos
     int total_productos_comprados = 0;
     int total_productos_vendidos = 0;
-    //Prodedemos los calculos
+    //-------------------------------------------
 
-    //Calculo de productos comprados en cada ciudad
+    // Procedemos los cálculos:
+
+    // Cálculo de productos comprados en cada ciudad
     if (proceder_c)
     {
-        int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; //Obtenemos la cantidad que sobra
+        // Obtenemos la cantidad que sobra
+        int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; 
+        // Sí sobran productos a la ciudad
         if (productos_sobrantes > 0){
+            // Si podemos comprar todos los productos que barco quiere en una ciudad, entonces compramos todo lo que necesitamos
             if (productos_sobrantes >= productos_a_comprar){
                 total_productos_comprados = productos_a_comprar;
                 productos_a_comprar = 0;
             }
-            else {
+            else { // De lo contrario compraremos los productos que podamos
                 total_productos_comprados = productos_sobrantes;
                 productos_a_comprar -= productos_sobrantes;
             }
         }
     }
 
-    //Calculo de productos vendidos en cada ciudad
+    // Cálculo de productos vendidos en cada ciudad
     if (proceder_v)
     {
-        int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; //Obtenemos la cantidad que neccesita
+        // Obtenemos la cantidad que necesita
+        int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; 
+        // Si podemos vender todos los productos que barco quiere en una ciudad, entonces venderemos todo lo que neccesite
         if (productos_neccesarios > 0){
             if (productos_neccesarios >= productos_a_vender){
                 total_productos_vendidos = productos_a_vender;
                 productos_a_vender = 0;
             }
-            else {
+            else { // De lo contrario venderemos los productos que podamos
                 total_productos_vendidos = productos_neccesarios;
                 productos_a_vender -= productos_neccesarios;
             }
         }
     }
 
+    // Construimos un "pair" con las compras y ventas realizadas en la ciudad
     pair<int,int> beneficio;
+
     beneficio.first = total_productos_comprados;
     beneficio.second = total_productos_vendidos;
+    //-----------------------------------------------------------------------
 
-    BinTree<pair<int,int>> arbol_izqueirda = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.left());
-    BinTree<pair<int,int>> arbol_derecha = Obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.right());
+    // Realizamos el recorrido recursivo por la izquierda y después por la derecha
+    BinTree<pair<int,int>> arbol_izqueirda = obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.left());
+    BinTree<pair<int,int>> arbol_derecha = obtener_arbol_de_ventas(id_prod_a_comprar,id_prod_a_vender,productos_a_comprar,productos_a_vender,nodo.right());
 
+    // Devolvemos un árbol con el beneficio conseguido en la ciudad y con su árbol izquierdo y derecho
     return BinTree<pair<int,int>>(beneficio,arbol_izqueirda,arbol_derecha);
 }
 
 
-list<pair<char,int>> recorido_arbol(const BinTree<pair<int,int>>& nodo){
+list<pair<char,int>> Cuenca::recorrido_con_max_beneficio(const BinTree<pair<int,int>>& nodo){
+    // Caso Base ########################################################################################
+
+    // Si el nodo es vacío
     if (nodo.empty()) return list<pair<char,int>>();
 
-    list<pair<char,int>> recorido_izquierda = recorido_arbol(nodo.left());
-    list<pair<char,int>> recorido_derecha = recorido_arbol(nodo.right());
+    // Paso Inductivo ###################################################################################
 
+    // Construimos las listas postorden
+    list<pair<char,int>> recorido_izquierda = recorrido_con_max_beneficio(nodo.left());
+    list<pair<char,int>> recorido_derecha = recorrido_con_max_beneficio(nodo.right());
+    //---------------------------------
+
+    // Inicializamos los beneficios por ruta
     int beneficio_izquierda = 0, beneficio_derecha = 0;
-    //beneficios por ruta
+
+    // Beneficios por ruta
     if (!recorido_izquierda.empty()) beneficio_izquierda = recorido_izquierda.front().second;
     if (!recorido_derecha.empty()) beneficio_derecha = recorido_derecha.front().second;
-    //###################
+    //--------------------
 
+    // Calculamos el beneficio en nuestra posición
     int beneficio_nodo_actual = nodo.value().first + nodo.value().second;
 
+    // Distinguimos por diferentes casos:
+
+    // En caso de que el beneficio de la parte izquierda y la parte derecha sea 0, entonces finalizamos la función
     if (beneficio_izquierda + beneficio_derecha == 0) {
+        // Devolvemos la lista formada únicamente por un elemento
         list<pair<char,int>> lista_unica;
-        lista_unica.push_front(make_pair('d',beneficio_nodo_actual));
+        // Char u -> Representa una única ciudad en la lista
+        lista_unica.push_front(make_pair('u',beneficio_nodo_actual));
         return lista_unica;
     }
 
+    // Si el beneficio de la derecha es mayor que el de la izquierda
     if (beneficio_derecha > beneficio_izquierda){
-        if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; //Incrementamos el beneficio
+        // Entonces, si existe el recorrido por la izquierda:
+        // Incrementamos el beneficio
+        if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; 
+        // Añadimos el nuevo nodo y la dirección por la que debemos ir
         recorido_derecha.push_front(make_pair('d',beneficio_nodo_actual));
+        // Devolvemos el recorrido hecho
         return recorido_derecha;
     }
     else if (beneficio_derecha < beneficio_izquierda){
@@ -118,11 +159,11 @@ list<pair<char,int>> recorido_arbol(const BinTree<pair<int,int>>& nodo){
 
 
 void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender){
-    int productos_a_comprar = Barco.consultat_cantidad_a_comprar();
-    int productos_a_vender = Barco.consultat_cantidad_a_vender();
+    int productos_a_comprar = Barco.consultar_cantidad_a_comprar();
+    int productos_a_vender = Barco.consultar_cantidad_a_vender();
     Productos.consultar_num();
-    BinTree<pair<int,int>> Arbol_de_ventas = this->Obtener_arbol_de_ventas(id_prod_a_comprar, id_prod_a_vender,productos_a_comprar,productos_a_vender,this->_cuenca);
-    list<pair<char,int>> ruta = recorido_arbol(Arbol_de_ventas);
+    BinTree<pair<int,int>> Arbol_de_ventas = this->obtener_arbol_de_ventas(id_prod_a_comprar, id_prod_a_vender,productos_a_comprar,productos_a_vender,this->_cuenca);
+    list<pair<char,int>> ruta = recorrido_con_max_beneficio(Arbol_de_ventas);
 
     list<pair<char,int>> ::iterator it_list = ruta.begin();
 
@@ -140,23 +181,23 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
         this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo_actual.value()); //Buscamos la ciudad actual
 
         pair<int,int> info_produ_comprar;
-        bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_produ_comprar);
+        bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c(id_prod_a_comprar,info_produ_comprar, false);
 
         pair<int,int> info_produ_vender;
-        bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_vender,info_produ_vender);
+        bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c(id_prod_a_vender,info_produ_vender, false);
 
         if (proceder_c)
         {
             int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; //Obtenemos la cantidad que sobra
             if (productos_sobrantes > 0){
                 if (productos_sobrantes >= productos_a_comprar){
-                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_a_comprar,info_produ_comprar.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_a_comprar,info_produ_comprar.second, false);
                     beneficio_total += productos_a_comprar;
                     aux_productos_a_comprar = 0;
                 }
                 else {
                     beneficio_total += productos_a_comprar;
-                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_sobrantes,info_produ_comprar.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_sobrantes,info_produ_comprar.second, false);
                     aux_productos_a_comprar -= productos_sobrantes;
                 }
             }
@@ -168,12 +209,12 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
             int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; //Obtenemos la cantidad que neccesita
             if (productos_neccesarios > 0){
                 if (productos_neccesarios >= productos_a_vender){
-                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second, false);
                     beneficio_total += productos_a_vender;
                     aux_productos_a_vender = 0;
                 }
                 else {
-                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_neccesarios,info_produ_vender.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_vender,info_produ_vender.first + productos_neccesarios,info_produ_vender.second, false);
                     beneficio_total += productos_neccesarios;
                     aux_productos_a_vender -= productos_neccesarios;
                 }
@@ -183,10 +224,15 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
         if (it_list->first == 'i'){
             nodo_actual = nodo_actual.left();
         }
-        else {
+        else if (it_list->first == 'd'){
             nodo_actual = nodo_actual.right();
         }
+        
         it_list++;
+
+        if (it_list->first == 'u'){
+            it_list = ruta.end();
+        }
     }
 
     cout << beneficio_total <<endl;
@@ -327,7 +373,7 @@ void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_p
         bool proceder = false;
 
         if (_it_mapa_ciudad != this->_mapa_ciudades.end())
-            proceder = _it_mapa_ciudad->second.modificar_prod_c(Productos,id_producto,unidades_poseidas,unidades_neccesarias);
+            proceder = _it_mapa_ciudad->second.modificar_prod_c(Productos,id_producto,unidades_poseidas,unidades_neccesarias, true);
         else {
             if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) error_notification(1);
             else error_notification(2);
@@ -394,7 +440,7 @@ void Cuenca::consultar_prod(const Cjt_Productos& Productos, string id_ciudad, in
     }
 
     pair<int,int> pair_unidades_poseidas_necesarias;
-    bool proceder = this->_it_mapa_ciudad->second.consultar_prod_c(id_producto,pair_unidades_poseidas_necesarias);
+    bool proceder = this->_it_mapa_ciudad->second.consultar_prod_c(id_producto,pair_unidades_poseidas_necesarias, true);
 
     if (proceder){
         //Imprimimos las unidades disponibles y neccesarias (PROVISIONAL)
@@ -403,23 +449,6 @@ void Cuenca::consultar_prod(const Cjt_Productos& Productos, string id_ciudad, in
         cout << pair_unidades_poseidas_necesarias.second;
         cout<<endl;
     }
-}
-
-void Cuenca::consultar_prod_c_sin_notificacion_de_errores(const Cjt_Productos& Productos, string id_ciudad, int id_producto){
-
-    if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) {
-        //Informacion no valida con errores
-        return;
-    }
-
-    this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
-
-    if (_it_mapa_ciudad == this->_mapa_ciudades.end()) {
-        return;
-    }
-
-    pair<int,int> pair_unidades_poseidas_necesarias;
-    this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_producto,pair_unidades_poseidas_necesarias);
 }
 
 void Cuenca::escribir_ciudad(string id_ciudad) const{

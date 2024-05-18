@@ -6,19 +6,20 @@
 #define HEADERFILE_ERROR_MODULE
 
 #ifndef NO_DIAGRAM
-#include <iostream> 
+#include <iostream>
 using namespace std;
 #endif
 
 /**
  * @brief Notifica un error especificado por su número.
  * 
- * @pre Hay un número del 1 al 9 que equivale a un error.
- * @post Devuelve por el canal de salida el error correspondiente.
- * 
  * @param num Número del error a notificar.
  * 
- * @b Lista de Errores:
+ * @pre El número de error debe estar entre 1 y 9.
+ * @post Se muestra por el canal de salida el mensaje de error correspondiente.
+ * 
+ * @b LISTA_DE_ERRORES:
+ * 
  *   - (1) No existe el producto.
  *   - (2) No existe la ciudad.
  *   - (3) No se puede comprar y vender el mismo producto.
@@ -27,8 +28,9 @@ using namespace std;
  *   - (6) Unidades necesarias <= 0.
  *   - (7) Comando no disponible.
  *   - (8) No se puede comprar y vender el mismo producto.
- *   - (9) ciudad repetida.
+ *   - (9) Ciudad repetida.
+ * --------------------------------------------------------
  */
 void error_notification(int num);
 
-#endif
+#endif // HEADERFILE_ERROR_MODULE
