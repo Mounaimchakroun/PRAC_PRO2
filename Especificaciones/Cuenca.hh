@@ -12,7 +12,7 @@
 #include "BinTree.hh"
 #endif
 
-class Cuenca      
+class Cuenca
 {
 private:
     /// Arbol de id de las ciudades
@@ -32,7 +32,7 @@ private:
     void aux_redistribuir(Cjt_Productos& Productos, const BinTree<string>& arbol_cuenca);
 
     /**
-      * @brief Función privada para leer el árbol binario del río y el mapa de ciudades desde el canal de entrada 
+      * @brief Función privada para leer el árbol binario del río y el mapa de ciudades desde el canal de entrada
       * @param Producto Conjunto de productos
       * @param new_map Mapa de ciudades
       * @return Árbol binario del río
@@ -40,7 +40,7 @@ private:
       * @post Obtenemos el árbol binario del río y el mapa que relaciona cada ID con su ciudad correspondiente
     */
     BinTree<string> aux_lectura_rio(const Cjt_Productos& Producto, map<string, Ciudad>& new_map);
-    
+
     /**
       * @brief Función para obtener la lista de nombres de ciudades formando la ruta más beneficiosa para el barco
       * @param Productos Conjunto de productos
@@ -51,19 +51,19 @@ private:
       * @post Nos proporciona la lista de nombres de ciudades donde estas forman la ruta más beneficiosa para el barco
     */
     list<string> recorido_con_max_beneficio(const Cjt_Productos& Productos, const BinTree<string>& arbol_cuenca, const Barco& Barco);
-    
+
     /**
        Pre:
        Post:
     */
-    BinTree<pair<string,pair<int,int>>> Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos, const BinTree<string>& nodo);
-    
+    BinTree<pair<int,int>> Obtener_arbol_de_ventas(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo);
+
     /**
        Pre:
        Post:
     */
-    void aux_viajar(Cjt_Productos &Productos, Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender, int productos_comprados, int productos_vendidos);
-    
+    void aux_viajar(Cjt_Productos &Productos, Barco& Barco, int id_prod_a_comprar, int id_prod_a_vender);
+
 public:
     // CONSTRUCTORES / DESTRUCTORES:
 
@@ -113,7 +113,7 @@ public:
     void comerciar(Cjt_Productos& Productos, string id_ciudad_1, string id_ciudad_2);
 
     /**
-      * @brief Redistribuye productos entre las ciudades a lo largo del río 
+      * @brief Redistribuye productos entre las ciudades a lo largo del río
       * @param Productos Conjunto de productos
       * @pre Tenemos un río con ciudades
       * @post Redistribuimos los productos entre las ciudades desde la desembocadura hasta los nacimientos de forma que intentemos que las ciudades cumplan las cantidades necesarias requeridas, si es posible
@@ -131,7 +131,7 @@ public:
     void poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto);
 
     /**
-      * @brief Modifica un producto en el inventario de una ciudad si es posible 
+      * @brief Modifica un producto en el inventario de una ciudad si es posible
       * @param Productos Conjunto de productos
       * @param id_ciudad Nombre de la ciudad
       * @param id_producto Identificador del producto
