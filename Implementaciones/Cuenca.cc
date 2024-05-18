@@ -86,6 +86,12 @@ list<pair<char,int>> recorido_arbol(const BinTree<pair<int,int>>& nodo){
 
     int beneficio_nodo_actual = nodo.value().first + nodo.value().second;
 
+    if (beneficio_izquierda + beneficio_derecha == 0) {
+        list<pair<char,int>> lista_unica;
+        lista_unica.push_front(make_pair('d',beneficio_nodo_actual));
+        return lista_unica;
+    }
+
     if (beneficio_derecha > beneficio_izquierda){
         if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; //Incrementamos el beneficio
         recorido_derecha.push_front(make_pair('d',beneficio_nodo_actual));
@@ -126,14 +132,12 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
     int beneficio_total = 0;
 
     BinTree<string> nodo_actual = this->_cuenca;
-    string ultima_ciudad;
+    string ultima_ciudad = "#";
 
     while ((aux_productos_a_comprar + aux_productos_a_vender > 0) and (it_list != ruta.end()) and (!nodo_actual.empty()))
     {
         ultima_ciudad = nodo_actual.value();
         this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo_actual.value()); //Buscamos la ciudad actual
-
-        Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; //Obtenemos la ciudad actual
 
         pair<int,int> info_produ_comprar;
         bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c_sin_notificacion_de_errores(id_prod_a_comprar,info_produ_comprar);
@@ -164,12 +168,12 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
             int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; //Obtenemos la cantidad que neccesita
             if (productos_neccesarios > 0){
                 if (productos_neccesarios >= productos_a_vender){
-                    ciudad_seleccionada.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second);
                     beneficio_total += productos_a_vender;
                     aux_productos_a_vender = 0;
                 }
                 else {
-                    ciudad_seleccionada.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_neccesarios,info_produ_vender.second);
+                    this->_it_mapa_ciudad->second.modificar_prod_c_sin_notificacion_de_error(Productos,id_prod_a_vender,info_produ_vender.first + productos_neccesarios,info_produ_vender.second);
                     beneficio_total += productos_neccesarios;
                     aux_productos_a_vender -= productos_neccesarios;
                 }
@@ -186,9 +190,7 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
     }
 
     cout << beneficio_total <<endl;
-
-    Barco.agregar_ultima_ciudad_consultada(ultima_ciudad);
-
+    if (beneficio_total > 0) Barco.agregar_ultima_ciudad_consultada(ultima_ciudad);
 
 }
 //#####################################################
