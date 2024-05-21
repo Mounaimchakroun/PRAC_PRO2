@@ -32,9 +32,9 @@ private:
      *   - first: número de unidades disponibles.
      *   - second: número de unidades necesarias.
      */
-    std::map<int, std::pair<int, int>> _Inventario;
+    map<int,pair<int, int>> _Inventario;
 
-    std::map<int, std::pair<int, int>>::iterator _it_Inventario;  ///< Iterador para el mapa del inventario.
+    map<int,pair<int, int>>::iterator _it_Inventario;  ///< Iterador para el mapa del inventario.
     int _num_de_productos = 0;  ///< Número total de productos en el inventario.
 
 public:
@@ -136,6 +136,16 @@ public:
      * @post Devuelve el volumen total de todos los productos en la ciudad.
      */
     int consultar_volumen_total() const;
+
+    /**
+     * @brief -
+     * 
+     * @return -
+     *
+     * @pre -
+     * @post -
+     */
+    void limpiar_inventario();
 
     // ESCRITURA
 

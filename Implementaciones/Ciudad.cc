@@ -223,3 +223,7 @@ void Ciudad::escribir_ciudad_c() const{
     cout << this->_peso_total <<" "<< this->_volumen_total <<endl;
 }
 
+void Ciudad::limpiar_inventario(){
+    map<int,pair<int,int>> new_Inventario;
+    this->_Inventario = new_Inventario;
+}
