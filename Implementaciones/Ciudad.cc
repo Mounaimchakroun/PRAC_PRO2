@@ -226,9 +226,9 @@ void Ciudad::escribir_ciudad_c() const{
 void Ciudad::limpiar_inventario(){
     this->_it_Inventario = this->_Inventario.begin();
 
-    while (_it_Inventario != _Inventario.end())
+    while (this->_it_Inventario != this->_Inventario.end())
     {
-        _it_Inventario = _Inventario.erase(_it_Inventario);
+        this->_it_Inventario = this->_Inventario.erase(this->_it_Inventario);
     }
     
 }
