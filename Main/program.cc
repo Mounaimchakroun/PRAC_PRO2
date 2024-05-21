@@ -1,4 +1,4 @@
-/** @mainpage 
+/** @mainpage
     Esta es la práctica de Programación 2 de la primavera de 2024 con el siguiente enunciado:
 
     Tenemos una cuenca fluvial formada por un río principal y varios afluentes. Hay
@@ -109,7 +109,7 @@
     ------------------------------------------------------------------------------------------
     14) comerciar o co: Se leerán los identificadores de dos ciudades. Si no existe alguna
         de las dos (o las dos), se escribe un mensaje de error. Si las ciudades existen y son
-        la misma, se escribe un mensaje de error. Si las ciudades existen y son diferentes, 
+        la misma, se escribe un mensaje de error. Si las ciudades existen y son diferentes,
         comercian entre ellas.
     ------------------------------------------------------------------------------------------
     15) redistribuir o re: No se leen datos. La ciudad de la desembocadura comercia con su
@@ -193,7 +193,7 @@ int main(){
             cout <<'#'<<input;
             cout<<endl;
             cout << Productos.consultar_num() <<endl;
-        }   
+        }
         else if (input == "agregar_productos" or input == "ap"){
             int n;
             cin >> n;
@@ -266,8 +266,8 @@ int main(){
         }
         else if (input == "//"){
             string residuo;
-            cin >> residuo;
+            getline(cin,residuo);
         }
     }
-    
+
 }

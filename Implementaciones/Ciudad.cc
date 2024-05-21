@@ -231,4 +231,7 @@ void Ciudad::limpiar_inventario(){
         this->_it_Inventario = this->_Inventario.erase(this->_it_Inventario);
     }
     
+    this->_peso_total = 0;
+    this->_volumen_total = 0;
+    this->_num_de_productos = 0;
 }
