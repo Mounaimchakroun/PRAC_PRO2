@@ -366,8 +366,12 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
     int id_producto, unidades_poseidas, unidades_necesarias;
     // Entrada del número de elementos
     cin >> numero_de_elementos;
-    // Limpiamos el inventrio
-    _it_mapa_ciudad->second.limpiar_inventario();
+
+    if (procedemos) {
+        // Limpiamos el inventrio
+        _it_mapa_ciudad->second.limpiar_inventario();
+    }
+    
     // Bucle que introduce los <numero_de_elementos> elementos dentó del inventario de la ciudad
     for (int i = 0; i < numero_de_elementos; i++)
     {
