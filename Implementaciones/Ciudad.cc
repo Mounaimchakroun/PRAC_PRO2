@@ -224,6 +224,11 @@ void Ciudad::escribir_ciudad_c() const{
 }
 
 void Ciudad::limpiar_inventario(){
-    map<int,pair<int,int>> new_Inventario;
-    this->_Inventario = new_Inventario;
+    this->_it_Inventario = this->_Inventario.begin();
+
+    while (_it_Inventario != _Inventario.end())
+    {
+        _it_Inventario = _Inventario.erase(_it_Inventario);
+    }
+    
 }
