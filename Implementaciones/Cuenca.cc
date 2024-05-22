@@ -10,9 +10,9 @@
 //########## VIAJAR ########################################
 BinTree<pair<int,int>> Cuenca::obtener_arbol_de_beneficios(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree<string>& nodo){
     // Caso Base ########################################################################################
-    
+
     // Si el nodo es vacío
-    if (nodo.empty()) return BinTree<pair<int,int>>(); 
+    if (nodo.empty()) return BinTree<pair<int,int>>();
 
     // No hay más productos que vender
     if (productos_a_comprar == 0 and productos_a_vender == 0) return BinTree<pair<int,int>>();
@@ -20,10 +20,10 @@ BinTree<pair<int,int>> Cuenca::obtener_arbol_de_beneficios(int id_prod_a_comprar
     // Paso Inductivo ###################################################################################
 
     // Buscamos la ciudad actual
-    this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo.value()); 
+    this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo.value());
 
     // Obtenemos la ciudad actual
-    Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second; 
+    Ciudad ciudad_seleccionada = this->_it_mapa_ciudad->second;
 
     // Obtenemos las cantidades poseídas y necesarias del producto que el barco quiere comprar y vender.
     pair<int,int> info_produ_comprar;
@@ -44,7 +44,7 @@ BinTree<pair<int,int>> Cuenca::obtener_arbol_de_beneficios(int id_prod_a_comprar
     if (proceder_c)
     {
         // Obtenemos la cantidad que sobra
-        int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; 
+        int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second;
         // Sí sobran productos a la ciudad
         if (productos_sobrantes > 0){
             // Si podemos comprar todos los productos que barco quiere en una ciudad, entonces compramos todo lo que necesitamos
@@ -63,7 +63,7 @@ BinTree<pair<int,int>> Cuenca::obtener_arbol_de_beneficios(int id_prod_a_comprar
     if (proceder_v)
     {
         // Obtenemos la cantidad que necesita
-        int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; 
+        int productos_neccesarios = info_produ_vender.second - info_produ_vender.first;
         // Si podemos vender todos los productos que barco quiere en una ciudad, entonces venderemos todo lo que neccesite
         if (productos_neccesarios > 0){
             if (productos_neccesarios >= productos_a_vender){
@@ -132,7 +132,7 @@ list<pair<char,int>> Cuenca::recorrido_con_max_beneficio(const BinTree<pair<int,
     if (beneficio_derecha > beneficio_izquierda){
         // Entonces, si existe el recorrido por la derecha:
         // Incrementamos el beneficio
-        if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second; 
+        if (!recorido_derecha.empty()) beneficio_nodo_actual += recorido_derecha.begin()->second;
         // Añadimos el nuevo nodo y la dirección por la que debemos ir
         recorido_derecha.push_front(make_pair('d',beneficio_nodo_actual));
         // Devolvemos el recorrido hecho
@@ -200,28 +200,32 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
     {
         // Actualizamos la última ciudad consultada
         ultima_ciudad = nodo_actual.value();
+
         // Buscamos la ciudad cuyo nombre lo contiene el nodo
         this->_it_mapa_ciudad = this->_mapa_ciudades.find(nodo_actual.value()); //Buscamos la ciudad actual
+
         // Obtenemos la informacion necesaria del producto a comprar y vender
         pair<int,int> info_produ_comprar;
         bool proceder_c = this->_it_mapa_ciudad->second.consultar_prod_c(id_prod_a_comprar,info_produ_comprar, false);
 
+
         pair<int,int> info_produ_vender;
         bool proceder_v = this->_it_mapa_ciudad->second.consultar_prod_c(id_prod_a_vender,info_produ_vender, false);
+
         //-------------------------------------------------------------------
         // Si el producto a comprar existe y lo tiene la ciudad
-        if (proceder_c)
+        if ((proceder_c) and (aux_productos_a_comprar > 0))
         {
             // Obtenemos la cantidad que sobra de la ciudad
-            int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second; 
+            int productos_sobrantes = info_produ_comprar.first - info_produ_comprar.second;
             // Si a la ciudad le sobra el producto
             if (productos_sobrantes > 0){
                 // Si la cantidad que sobra es mayor a la que podemos comprar compraremos todo lo que podamos
-                if (productos_sobrantes >= productos_a_comprar){
+                if (productos_sobrantes >= aux_productos_a_comprar){
                     // Modificamos las cantidades del inventario de la ciudad
-                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_comprar,info_produ_comprar.first - productos_a_comprar,info_produ_comprar.second, false);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_comprar,info_produ_comprar.first - aux_productos_a_comprar,info_produ_comprar.second, false);
                     // Incrementamos el beneficio total
-                    beneficio_total += productos_a_comprar;
+                    beneficio_total += aux_productos_a_comprar;
                     // Como hemos comprado todo lo que necesitamos ya no compraremos más
                     aux_productos_a_comprar = 0;
                 }
@@ -237,17 +241,17 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
         }
 
         // Cálculo de productos vendidos en cada ciudad
-        if (proceder_v){   
+        if (proceder_v and (aux_productos_a_vender > 0)){
             // Obtenemos la cantidad que necesita
-            int productos_neccesarios = info_produ_vender.second - info_produ_vender.first; 
+            int productos_neccesarios = info_produ_vender.second - info_produ_vender.first;
             // Si a la ciudad necesita el producto
             if (productos_neccesarios > 0){
                 // Si la cantidad que necesita es mayor a la que podemos vender venderemos todo lo que podamos
-                if (productos_neccesarios >= productos_a_vender){
+                if (productos_neccesarios >= aux_productos_a_vender){
                     // Modificamos las cantidades del inventario de la ciudad
-                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_vender,info_produ_vender.first + productos_a_vender,info_produ_vender.second, false);
+                    this->_it_mapa_ciudad->second.modificar_prod_c(Productos,id_prod_a_vender,info_produ_vender.first + aux_productos_a_vender,info_produ_vender.second, false);
                     // Incrementamos el beneficio total
-                    beneficio_total += productos_a_vender;
+                    beneficio_total += aux_productos_a_vender;
                     // Como hemos vendido todo lo que queríamos ya no venderemos más
                     aux_productos_a_vender = 0;
                 }
@@ -262,9 +266,10 @@ void Cuenca::aux_viajar(Cjt_Productos &Productos,Barco& Barco, int id_prod_a_com
             }
         }
 
-        // Seguimos por la ruta, si el char es 'i' iremos por la izquierda, de lo contrario por la derecha. 
+        // Seguimos por la ruta, si el char es 'i' iremos por la izquierda, de lo contrario por la derecha.
         // Si no es ni 'i' ni 'd' entonces es 'u' y esto significa que es una lista de única ciudad, es decir,
         // finalizamos la ruta.
+
         if (it_list->first == 'i'){
             nodo_actual = nodo_actual.left();
             // Incrementamos el iterador
@@ -316,7 +321,7 @@ BinTree<string> Cuenca::aux_lectura_rio(const Cjt_Productos& Productos,map<strin
 
     // Si el nombre de la ciudad es # entonces no existe
     if (id_ciudad == "#") return BinTree<string>();
-    
+
     // Caso Inductivo ############################
 
     // Obtenemos las ciudades de la izquierda y derecha del nodo
@@ -352,7 +357,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
     // Buscamos la ciudad a la cual queremos leer el inventario
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
     // Los datos leidos tienen valideza
-    bool procedemos = true; 
+    bool procedemos = true;
     // Si la ciudad no existe
     if (this->_it_mapa_ciudad == this->_mapa_ciudades.end()) {
         // Notificamos el error
@@ -371,7 +376,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
         // Limpiamos el inventrio
         _it_mapa_ciudad->second.limpiar_inventario();
     }
-    
+
     // Bucle que introduce los <numero_de_elementos> elementos dentó del inventario de la ciudad
     for (int i = 0; i < numero_de_elementos; i++)
     {
@@ -388,7 +393,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
             }
             else { // En caso contrario
                 // Notificamos del error obtenido
-                error_notification(6); 
+                error_notification(6);
             }
         }
     }
@@ -414,7 +419,7 @@ void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_produ
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
     // Si las unidades necesarias son estrictamente positiva
     if (unidades_necesarias > 0){
-        
+
         bool proceder = false;
         // Si la ciudad existe
         if (_it_mapa_ciudad != this->_mapa_ciudades.end())
@@ -442,7 +447,7 @@ void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_produ
             }
         }
     }
-    else { // En caso contrario imprimimos un error 
+    else { // En caso contrario imprimimos un error
         error_notification(6);
     }
 }
@@ -474,7 +479,7 @@ void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_p
                 error_notification(2);
             }
             else { // En caso contrario, la ciudad existe
-                //Imprimimos el peso y volumen total 
+                //Imprimimos el peso y volumen total
                 cout << _it_mapa_ciudad->second.consultar_peso_total();
                 cout <<" ";
                 cout << _it_mapa_ciudad->second.consultar_volumen_total();
@@ -483,7 +488,7 @@ void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_p
             }
         }
     }
-    else { // En caso contrario imprimimos un error 
+    else { // En caso contrario imprimimos un error
         error_notification(6);
     }
 
@@ -508,11 +513,11 @@ void Cuenca::quitar_prod(Cjt_Productos& Productos, string id_ciudad, int id_prod
     }
 
     // Si la ciudad existe
-    // Intentamos quitar el producto 
+    // Intentamos quitar el producto
     bool proceder = _it_mapa_ciudad->second.quitar_prod_c(Productos,id_producto);
     // Si la operación se realiza con éxito procedemos
     if (proceder){
-        //Imprimimos el peso y volumen total 
+        //Imprimimos el peso y volumen total
         cout << _it_mapa_ciudad->second.consultar_peso_total();
         cout <<" ";
         cout << _it_mapa_ciudad->second.consultar_volumen_total();
@@ -541,11 +546,11 @@ void Cuenca::consultar_prod(const Cjt_Productos& Productos, string id_ciudad, in
     // Si la ciudad existe
     // Creamos el "pair" que contendrá la información del producto
     pair<int,int> pair_unidades_poseidas_necesarias;
-    // Intentamos consultar el producto 
+    // Intentamos consultar el producto
     bool proceder = this->_it_mapa_ciudad->second.consultar_prod_c(id_producto,pair_unidades_poseidas_necesarias, true);
     // Si la operación se realiza con éxito procedemos
     if (proceder){
-        //Imprimimos las unidades disponibles y neccesarias 
+        //Imprimimos las unidades disponibles y neccesarias
         cout << pair_unidades_poseidas_necesarias.first;
         cout <<" ";
         cout << pair_unidades_poseidas_necesarias.second;
@@ -598,6 +603,8 @@ void Cuenca::comerciar(Cjt_Productos& Productos, string id_ciudad_1, string id_c
 
 void Cuenca::hacer_viaje(Cjt_Productos& Productos, Barco& Barco){
     // Hacemos el vaije
+    this->_cuenca.setInputOutputFormat(3);
+    cout << this->_cuenca <<endl;
     this->aux_viajar(Productos,Barco,Barco.cons_id_producto_a_comprar(),Barco.cons_id_producto_a_vender());
 }
 
