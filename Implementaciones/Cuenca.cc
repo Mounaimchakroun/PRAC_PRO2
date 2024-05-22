@@ -603,8 +603,6 @@ void Cuenca::comerciar(Cjt_Productos& Productos, string id_ciudad_1, string id_c
 
 void Cuenca::hacer_viaje(Cjt_Productos& Productos, Barco& Barco){
     // Hacemos el vaije
-    this->_cuenca.setInputOutputFormat(3);
-    cout << this->_cuenca <<endl;
     this->aux_viajar(Productos,Barco,Barco.cons_id_producto_a_comprar(),Barco.cons_id_producto_a_vender());
 }
 
