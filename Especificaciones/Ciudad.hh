@@ -136,18 +136,16 @@ public:
      * @post Devuelve el volumen total de todos los productos en la ciudad.
      */
     int consultar_volumen_total() const;
-
+    
     /**
-     * @brief -
-     * 
-     * @return -
+     * @brief Limpia el inventario de la ciudad.
      *
-     * @pre -
-     * @post -
+     * @pre La ciudad puede tener un inventario vacío o lleno.
+     * @post El inventario de la ciudad queda vacío.
      */
     void limpiar_inventario();
-
-    // ESCRITURA
+   
+   // ESCRITURA
 
     /**
      * @brief Imprime el inventario de la ciudad.
