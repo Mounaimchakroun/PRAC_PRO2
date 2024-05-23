@@ -1,6 +1,6 @@
 # Proyecto PRAC_PRO2   :turtle:
 
-Este proyecto en propiedad de Mounaim Chakroun. Sin embargo, se permite su uso libre para cualquier propósito.
+Este proyecto es propiedad de Mounaim Chakroun. Sin embargo, se permite su uso libre para cualquier propósito.
 
 
 ## Instrucciones de Uso:
