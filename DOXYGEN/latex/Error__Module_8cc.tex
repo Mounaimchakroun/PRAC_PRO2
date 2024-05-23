@@ -1,0 +1,89 @@
+\hypertarget{Error__Module_8cc}{}\doxysection{Referencia del Archivo Error\+\_\+\+Module.\+cc}
+\label{Error__Module_8cc}\index{Error\_Module.cc@{Error\_Module.cc}}
+
+
+Implementación de Error\+\_\+\+Module.  
+
+
+{\ttfamily \#include \char`\"{}Error\+\_\+\+Module.\+hh\char`\"{}}\newline
+Dependencia gráfica adjunta para Error\+\_\+\+Module.\+cc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{Error__Module_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Error__Module_8cc_a557d74679a1f967337739b2e209fa70f}{error\+\_\+notification}} (int num)
+\begin{DoxyCompactList}\small\item\em Notifica un error especificado por su número. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+Implementación de Error\+\_\+\+Module. 
+
+
+
+Definición en el archivo \mbox{\hyperlink{Error__Module_8cc_source}{Error\+\_\+\+Module.\+cc}}.
+
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{Error__Module_8cc_a557d74679a1f967337739b2e209fa70f}\label{Error__Module_8cc_a557d74679a1f967337739b2e209fa70f}} 
+\index{Error\_Module.cc@{Error\_Module.cc}!error\_notification@{error\_notification}}
+\index{error\_notification@{error\_notification}!Error\_Module.cc@{Error\_Module.cc}}
+\doxysubsubsection{\texorpdfstring{error\_notification()}{error\_notification()}}
+{\footnotesize\ttfamily void error\+\_\+notification (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Notifica un error especificado por su número. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em num} & Número del error a notificar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondición}
+El número de error debe estar entre 1 y 9. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondición}
+Se muestra por el canal de salida el mensaje de error correspondiente.
+\end{DoxyPostcond}
+{\bfseries{LISTA\+\_\+\+DE\+\_\+\+ERRORES\+:}} 
+
+
+\begin{DoxyItemize}
+\item (1) No existe el producto.
+\item (2) No existe la ciudad.
+\item (3) No se puede comprar y vender el mismo producto.
+\item (4) La ciudad ya tiene el producto.
+\item (5) La ciudad no tiene el producto.
+\item (6) Unidades necesarias \texorpdfstring{$<$}{<}= 0.
+\item (7) Comando no disponible.
+\item (8) No se puede comprar y vender el mismo producto. 
+\end{DoxyItemize}\hypertarget{Error__Module_8hh_autotoc_md0}{}\doxysubsubsection{-\/ (9) Ciudad repetida.}\label{Error__Module_8hh_autotoc_md0}
+
+
+Definición en la línea \mbox{\hyperlink{Error__Module_8cc_source_l00007}{7}} del archivo \mbox{\hyperlink{Error__Module_8cc_source}{Error\+\_\+\+Module.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007                                 \{}
+\DoxyCodeLine{00008     \textcolor{keywordtype}{string} error;}
+\DoxyCodeLine{00009     \textcolor{comment}{// Obtenemos el error deseado}}
+\DoxyCodeLine{00010     \textcolor{keywordflow}{if} (num == 1) error = \textcolor{stringliteral}{"{}no existe el producto"{}};}
+\DoxyCodeLine{00011     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 2) error = \textcolor{stringliteral}{"{}no existe la ciudad"{}};}
+\DoxyCodeLine{00012     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 3) error = \textcolor{stringliteral}{"{}no se puede comprar y vender el mismo producto"{}};}
+\DoxyCodeLine{00013     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 4) error = \textcolor{stringliteral}{"{}la ciudad ya tiene el producto"{}};}
+\DoxyCodeLine{00014     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 5) error = \textcolor{stringliteral}{"{}la ciudad no tiene el producto"{}};}
+\DoxyCodeLine{00015     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 6) error = \textcolor{stringliteral}{"{}unidades necesarias <= 0"{}};}
+\DoxyCodeLine{00016     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 7) error = \textcolor{stringliteral}{"{}comando no disponible"{}};}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 8) error = \textcolor{stringliteral}{"{}no se puede comprar y vender el mismo producto"{}};}
+\DoxyCodeLine{00018     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (num == 9) error = \textcolor{stringliteral}{"{}ciudad repetida"{}};}
+\DoxyCodeLine{00019     \textcolor{comment}{// Imprimimos el error}}
+\DoxyCodeLine{00020     cout << \textcolor{stringliteral}{"{}error: "{}} << error <<endl;}
+\DoxyCodeLine{00021 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,52 @@
+\hypertarget{Cjt__Productos_8cc_source}{}\doxysection{Cjt\+\_\+\+Productos.\+cc}
+\mbox{\hyperlink{Cjt__Productos_8cc}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00005}00005 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Cjt__Productos_8hh}{Cjt\_Productos.hh}}"{}}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00006}00006 \textcolor{comment}{// Constructor vacío}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00007}\mbox{\hyperlink{classCjt__Productos_a883f11c37e355d97bf355b19366ab03f}{00007}} \mbox{\hyperlink{classCjt__Productos_a883f11c37e355d97bf355b19366ab03f}{Cjt\_Productos::Cjt\_Productos}}()\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00008}00008     }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00009}00009 \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00011}\mbox{\hyperlink{classCjt__Productos_a3a0eb3699e1f92ba5d8dc3a5a3bf0435}{00011}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classCjt__Productos_a3a0eb3699e1f92ba5d8dc3a5a3bf0435}{Cjt\_Productos::agregar\_producto}}(\textcolor{keywordtype}{int} peso, \textcolor{keywordtype}{int} volumen)\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00012}00012     \textcolor{comment}{// Agregamos en el "{}map"{} el nuevo producto con su correspondiente ID}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00013}00013     this-\/>\mbox{\hyperlink{classCjt__Productos_af04756319e569c5e7fffb6c19f0c53fd}{\_map\_productos}}[this-\/>\mbox{\hyperlink{classCjt__Productos_ab9b9b2c028b1593042189da46e932c66}{\_num\_productos\_actuales}} + 1] = pair<int,int>(peso,volumen);}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00014}00014     \textcolor{comment}{// Incrementamos el número de productos del conjunto}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00015}00015     this-\/>\mbox{\hyperlink{classCjt__Productos_ab9b9b2c028b1593042189da46e932c66}{\_num\_productos\_actuales}} ++;}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00016}00016 \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00018}\mbox{\hyperlink{classCjt__Productos_a89f26cef3a817ca7f461f32990477960}{00018}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classCjt__Productos_a89f26cef3a817ca7f461f32990477960}{Cjt\_Productos::agregar\_productos}}(\textcolor{keywordtype}{int} num\_productos)\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00019}00019     \textcolor{comment}{// Agregamos <num\_productos> productos a nuestro conjunto}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00020}00020     \textcolor{keywordtype}{int} peso, volumen;}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00021}00021     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_productos; i++)}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00022}00022     \{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00023}00023         cin >> peso >> volumen;}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00024}00024         \mbox{\hyperlink{classCjt__Productos_a3a0eb3699e1f92ba5d8dc3a5a3bf0435}{agregar\_producto}}(peso, volumen);}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00025}00025     \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00028}\mbox{\hyperlink{classCjt__Productos_a4ab6fe8f34c500b84ddedd3f7f5785d4}{00028}} \textcolor{keywordtype}{int} \mbox{\hyperlink{classCjt__Productos_a4ab6fe8f34c500b84ddedd3f7f5785d4}{Cjt\_Productos::consultar\_num}}()\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00029}00029     \textcolor{comment}{// Obtenemos en número de productos que tiene nuestro conjunto}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00030}00030     \textcolor{keywordflow}{return} this-\/> \mbox{\hyperlink{classCjt__Productos_ab9b9b2c028b1593042189da46e932c66}{\_num\_productos\_actuales}};}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00031}00031 \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00033}\mbox{\hyperlink{classCjt__Productos_ab4ceb37682fa65ea623a37bbe69a9e3f}{00033}} pair<int,int> \mbox{\hyperlink{classCjt__Productos_ab4ceb37682fa65ea623a37bbe69a9e3f}{Cjt\_Productos::consultar\_producto\_del\_conjunto}}(\textcolor{keywordtype}{int} id\_producto)\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00034}00034     \textcolor{comment}{// Buscamos en nuestro conjunto el producto deseado}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00035}00035     \textcolor{comment}{// NOTA: No tenemos sistemas de protección, ya que en la PRE pedimos que ya exista}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00036}00036     this-\/>\mbox{\hyperlink{classCjt__Productos_ad80e7536aca0d55be1a0b3f3294c4bf1}{\_it\_map\_productos}} = this-\/>\mbox{\hyperlink{classCjt__Productos_af04756319e569c5e7fffb6c19f0c53fd}{\_map\_productos}}.find(id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00037}00037     \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classCjt__Productos_ad80e7536aca0d55be1a0b3f3294c4bf1}{\_it\_map\_productos}}-\/>second;}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00038}00038 \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00040}\mbox{\hyperlink{classCjt__Productos_a5d54286474be20b47c97628fe38c2190}{00040}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classCjt__Productos_a5d54286474be20b47c97628fe38c2190}{Cjt\_Productos::escribir\_producto}}(\textcolor{keywordtype}{int} id\_producto)\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00041}00041     \textcolor{comment}{// Nos aseguramos que exista el producto deseado}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00042}00042     \textcolor{keywordflow}{if} ((id\_producto <= 0) or (id\_producto >= this-\/>\mbox{\hyperlink{classCjt__Productos_ab9b9b2c028b1593042189da46e932c66}{\_num\_productos\_actuales}} + 1))\{}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00043}00043         \mbox{\hyperlink{Error__Module_8cc_a557d74679a1f967337739b2e209fa70f}{error\_notification}}(1); \textcolor{comment}{// Notificamos del error}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00044}00044         \textcolor{keywordflow}{return}; \textcolor{comment}{// Finalizamos la función, ya que el producto no existe}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00045}00045     \}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00046}00046     \textcolor{comment}{// En caso de que el producto exista en nuestro inventario}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00047}00047     this-\/>\mbox{\hyperlink{classCjt__Productos_ad80e7536aca0d55be1a0b3f3294c4bf1}{\_it\_map\_productos}} = this-\/>\mbox{\hyperlink{classCjt__Productos_af04756319e569c5e7fffb6c19f0c53fd}{\_map\_productos}}.find(id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00048}00048     \textcolor{comment}{// Imprimimos por el canal de salida información de este}}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00049}00049     cout << id\_producto  <<\textcolor{stringliteral}{"{} "{}}<< this-\/>\mbox{\hyperlink{classCjt__Productos_ad80e7536aca0d55be1a0b3f3294c4bf1}{\_it\_map\_productos}}-\/>second.first <<\textcolor{stringliteral}{"{} "{}}<< this-\/>\mbox{\hyperlink{classCjt__Productos_ad80e7536aca0d55be1a0b3f3294c4bf1}{\_it\_map\_productos}}-\/>second.second <<endl;}
+\DoxyCodeLine{\Hypertarget{Cjt__Productos_8cc_source_l00050}00050 \}}
+
+\end{DoxyCode}

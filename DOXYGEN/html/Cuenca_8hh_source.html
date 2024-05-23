@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>COMERCIO FLUVIAL (PRIMAVERA 2024): Fichero Fuente Cuenca.hh</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">COMERCIO FLUVIAL (PRIMAVERA 2024)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Buscar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Cuenca.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="Cuenca_8hh.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef HEADERFILE_CUENCA</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define HEADERFILE_CUENCA</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="Ciudad_8hh.html">Ciudad.hh</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="Barco_8hh.html">Barco.hh</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef NO_DIAGRAM</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;BinTree.hh&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classCuenca.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classCuenca.html">Cuenca</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classCuenca.html#a5251ab30457e1d6e592032e444e8afd9">   22</a></span>    BinTree&lt;string&gt; <a class="code hl_variable" href="classCuenca.html#a5251ab30457e1d6e592032e444e8afd9">_cuenca</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classCuenca.html#a43d0ac827a19845f1a3a3e9c83dafdce">   24</a></span>    map&lt;string, Ciudad&gt; <a class="code hl_variable" href="classCuenca.html#a43d0ac827a19845f1a3a3e9c83dafdce">_mapa_ciudades</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classCuenca.html#afb31f21b6a4c3a807458a946b6d72db7">   26</a></span>    map&lt;string, Ciudad&gt;::iterator <a class="code hl_variable" href="classCuenca.html#afb31f21b6a4c3a807458a946b6d72db7">_it_mapa_ciudad</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#ab8171802c06a0e7f913a75d13a3b6c7a">aux_redistribuir</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keyword">const</span> BinTree&lt;string&gt;&amp; arbol_cuenca);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    BinTree&lt;string&gt; <a class="code hl_function" href="classCuenca.html#a6e69871b2e770cf5119c0f84ffae8e8d">aux_lectura_rio</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Producto, map&lt;string, Ciudad&gt;&amp; new_map);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    list&lt;pair&lt;char,int&gt;&gt; <a class="code hl_function" href="classCuenca.html#a1c7617135d279fe30a960bc84b52c525">recorrido_con_max_beneficio</a>(<span class="keyword">const</span> BinTree&lt;pair&lt;int,int&gt;&gt;&amp; nodo);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    BinTree&lt;pair&lt;int,int&gt;&gt; <a class="code hl_function" href="classCuenca.html#ac0279f54060a04f21d032dd08266b171">obtener_arbol_de_beneficios</a>(<span class="keywordtype">int</span> id_prod_a_comprar, <span class="keywordtype">int</span> id_prod_a_vender, <span class="keywordtype">int</span> productos_a_comprar, <span class="keywordtype">int</span> productos_a_vender, <span class="keyword">const</span> BinTree&lt;string&gt;&amp; nodo);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a3f5ed2b7ecbaaa048ea33ee2e13777b8">aux_viajar</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a> &amp;Productos, <a class="code hl_class" href="classBarco.html">Barco</a>&amp; <a class="code hl_class" href="classBarco.html">Barco</a>, <span class="keywordtype">int</span> id_prod_a_comprar, <span class="keywordtype">int</span> id_prod_a_vender);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// CONSTRUCTORES / DESTRUCTORES:</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_function" href="classCuenca.html#adef9dac47f2c1d8120a55b54b497efda">Cuenca</a>();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// MODIFICADORES:</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#ae99c61dad6943188905c3bea18ae12b6">leer_rio</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <a class="code hl_class" href="classBarco.html">Barco</a>&amp; <a class="code hl_class" href="classBarco.html">Barco</a>);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a479eb1a264eb00a81c835065360131d4">leer_inventarios</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a3bdfb9f327be05cc6e7864ace024e452">leer_inventario</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#ab8815373b997a51380add6400d1ac8d8">comerciar</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad_1, <span class="keywordtype">string</span> id_ciudad_2);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a2f6db879561063fd0eba28356263d2e5">redistribuir</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a28467bd2ca885263abfb738c0911e3c0">poner_prod</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad, <span class="keywordtype">int</span> id_producto);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a07f69ab13c1feab4a8e13faf7adba653">modificar_prod</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad, <span class="keywordtype">int</span> id_producto);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a4507acfe769fc584927d231f269c1422">quitar_prod</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad, <span class="keywordtype">int</span> id_producto);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#ab58884679b201cb3b22a286a01e9925e">hacer_viaje</a>(<a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <a class="code hl_class" href="classBarco.html">Barco</a>&amp; <a class="code hl_class" href="classBarco.html">Barco</a>);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="comment">// ESCRITURA</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a4eece4823d3668474fe79848c788049e">consultar_prod</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCjt__Productos.html">Cjt_Productos</a>&amp; Productos, <span class="keywordtype">string</span> id_ciudad, <span class="keywordtype">int</span> id_producto);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCuenca.html#a0bead6a42bd8cb71637944ecffb9e113">escribir_ciudad</a>(<span class="keywordtype">string</span> id_ciudad) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>};</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">#endif </span><span class="comment">// HEADERFILE_CUENCA</span></div>
+<div class="ttc" id="aBarco_8hh_html"><div class="ttname"><a href="Barco_8hh.html">Barco.hh</a></div><div class="ttdoc">Especificación de la clase Barco.</div></div>
+<div class="ttc" id="aCiudad_8hh_html"><div class="ttname"><a href="Ciudad_8hh.html">Ciudad.hh</a></div><div class="ttdoc">Especificación de la clase Ciudad.</div></div>
+<div class="ttc" id="aclassBarco_html"><div class="ttname"><a href="classBarco.html">Barco</a></div><div class="ttdoc">Representa un barco que realiza actividades de comercio.</div><div class="ttdef"><b>Definition:</b> <a href="Barco_8hh_source.html#l00018">Barco.hh:18</a></div></div>
+<div class="ttc" id="aclassCjt__Productos_html"><div class="ttname"><a href="classCjt__Productos.html">Cjt_Productos</a></div><div class="ttdoc">Representa un conjunto de productos.</div><div class="ttdef"><b>Definition:</b> <a href="Cjt__Productos_8hh_source.html#l00022">Cjt_Productos.hh:22</a></div></div>
+<div class="ttc" id="aclassCuenca_html"><div class="ttname"><a href="classCuenca.html">Cuenca</a></div><div class="ttdoc">Representa una cuenca fluvial con ciudades y la capacidad de gestionar comercio entre ellas.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8hh_source.html#l00019">Cuenca.hh:19</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a07f69ab13c1feab4a8e13faf7adba653"><div class="ttname"><a href="classCuenca.html#a07f69ab13c1feab4a8e13faf7adba653">Cuenca::modificar_prod</a></div><div class="ttdeci">void modificar_prod(Cjt_Productos &amp;Productos, string id_ciudad, int id_producto)</div><div class="ttdoc">Modifica un producto en el inventario de una ciudad si es posible.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00460">Cuenca.cc:460</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a0bead6a42bd8cb71637944ecffb9e113"><div class="ttname"><a href="classCuenca.html#a0bead6a42bd8cb71637944ecffb9e113">Cuenca::escribir_ciudad</a></div><div class="ttdeci">void escribir_ciudad(string id_ciudad) const</div><div class="ttdoc">Escribe la información de una ciudad si existe.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00567">Cuenca.cc:567</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a1c7617135d279fe30a960bc84b52c525"><div class="ttname"><a href="classCuenca.html#a1c7617135d279fe30a960bc84b52c525">Cuenca::recorrido_con_max_beneficio</a></div><div class="ttdeci">list&lt; pair&lt; char, int &gt; &gt; recorrido_con_max_beneficio(const BinTree&lt; pair&lt; int, int &gt; &gt; &amp;nodo)</div><div class="ttdoc">Obtiene la ruta más beneficiosa para el barco.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00096">Cuenca.cc:96</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a28467bd2ca885263abfb738c0911e3c0"><div class="ttname"><a href="classCuenca.html#a28467bd2ca885263abfb738c0911e3c0">Cuenca::poner_prod</a></div><div class="ttdeci">void poner_prod(Cjt_Productos &amp;Productos, string id_ciudad, int id_producto)</div><div class="ttdoc">Pone un producto en el inventario de una ciudad si es posible.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00418">Cuenca.cc:418</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a2f6db879561063fd0eba28356263d2e5"><div class="ttname"><a href="classCuenca.html#a2f6db879561063fd0eba28356263d2e5">Cuenca::redistribuir</a></div><div class="ttdeci">void redistribuir(Cjt_Productos &amp;Productos)</div><div class="ttdoc">Redistribuye productos entre las ciudades a lo largo del río.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00614">Cuenca.cc:614</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a3bdfb9f327be05cc6e7864ace024e452"><div class="ttname"><a href="classCuenca.html#a3bdfb9f327be05cc6e7864ace024e452">Cuenca::leer_inventario</a></div><div class="ttdeci">void leer_inventario(Cjt_Productos &amp;Productos, string id_ciudad)</div><div class="ttdoc">Lee el inventario de una ciudad.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00359">Cuenca.cc:359</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a3f5ed2b7ecbaaa048ea33ee2e13777b8"><div class="ttname"><a href="classCuenca.html#a3f5ed2b7ecbaaa048ea33ee2e13777b8">Cuenca::aux_viajar</a></div><div class="ttdeci">void aux_viajar(Cjt_Productos &amp;Productos, Barco &amp;Barco, int id_prod_a_comprar, int id_prod_a_vender)</div><div class="ttdoc">Realiza un viaje comercial con un barco.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00177">Cuenca.cc:177</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a43d0ac827a19845f1a3a3e9c83dafdce"><div class="ttname"><a href="classCuenca.html#a43d0ac827a19845f1a3a3e9c83dafdce">Cuenca::_mapa_ciudades</a></div><div class="ttdeci">map&lt; string, Ciudad &gt; _mapa_ciudades</div><div class="ttdoc">Mapa que relaciona nombres de ciudades con objetos Ciudad.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8hh_source.html#l00024">Cuenca.hh:24</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a4507acfe769fc584927d231f269c1422"><div class="ttname"><a href="classCuenca.html#a4507acfe769fc584927d231f269c1422">Cuenca::quitar_prod</a></div><div class="ttdeci">void quitar_prod(Cjt_Productos &amp;Productos, string id_ciudad, int id_producto)</div><div class="ttdoc">Quita un producto del inventario de una ciudad si es posible.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00502">Cuenca.cc:502</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a479eb1a264eb00a81c835065360131d4"><div class="ttname"><a href="classCuenca.html#a479eb1a264eb00a81c835065360131d4">Cuenca::leer_inventarios</a></div><div class="ttdeci">void leer_inventarios(Cjt_Productos &amp;Productos)</div><div class="ttdoc">Lee los inventarios de las ciudades.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00407">Cuenca.cc:407</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a4eece4823d3668474fe79848c788049e"><div class="ttname"><a href="classCuenca.html#a4eece4823d3668474fe79848c788049e">Cuenca::consultar_prod</a></div><div class="ttdeci">void consultar_prod(const Cjt_Productos &amp;Productos, string id_ciudad, int id_producto)</div><div class="ttdoc">Consulta la información de un producto en el inventario de una ciudad avisando de fallos.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00534">Cuenca.cc:534</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a5251ab30457e1d6e592032e444e8afd9"><div class="ttname"><a href="classCuenca.html#a5251ab30457e1d6e592032e444e8afd9">Cuenca::_cuenca</a></div><div class="ttdeci">BinTree&lt; string &gt; _cuenca</div><div class="ttdoc">Árbol binario que representa el río y las ciudades a lo largo de él.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8hh_source.html#l00022">Cuenca.hh:22</a></div></div>
+<div class="ttc" id="aclassCuenca_html_a6e69871b2e770cf5119c0f84ffae8e8d"><div class="ttname"><a href="classCuenca.html#a6e69871b2e770cf5119c0f84ffae8e8d">Cuenca::aux_lectura_rio</a></div><div class="ttdeci">BinTree&lt; string &gt; aux_lectura_rio(const Cjt_Productos &amp;Producto, map&lt; string, Ciudad &gt; &amp;new_map)</div><div class="ttdoc">Lee el árbol binario de la cuenca y el mapa de ciudades desde el canal de entrada.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00318">Cuenca.cc:318</a></div></div>
+<div class="ttc" id="aclassCuenca_html_ab58884679b201cb3b22a286a01e9925e"><div class="ttname"><a href="classCuenca.html#ab58884679b201cb3b22a286a01e9925e">Cuenca::hacer_viaje</a></div><div class="ttdeci">void hacer_viaje(Cjt_Productos &amp;Productos, Barco &amp;Barco)</div><div class="ttdoc">Realiza un viaje con un barco buscando la ruta más beneficiosa.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00609">Cuenca.cc:609</a></div></div>
+<div class="ttc" id="aclassCuenca_html_ab8171802c06a0e7f913a75d13a3b6c7a"><div class="ttname"><a href="classCuenca.html#ab8171802c06a0e7f913a75d13a3b6c7a">Cuenca::aux_redistribuir</a></div><div class="ttdeci">void aux_redistribuir(Cjt_Productos &amp;Productos, const BinTree&lt; string &gt; &amp;arbol_cuenca)</div><div class="ttdoc">Redistribuye productos entre nodos de un árbol de cuenca.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00299">Cuenca.cc:299</a></div></div>
+<div class="ttc" id="aclassCuenca_html_ab8815373b997a51380add6400d1ac8d8"><div class="ttname"><a href="classCuenca.html#ab8815373b997a51380add6400d1ac8d8">Cuenca::comerciar</a></div><div class="ttdeci">void comerciar(Cjt_Productos &amp;Productos, string id_ciudad_1, string id_ciudad_2)</div><div class="ttdoc">Hace comerciar dos ciudades.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00582">Cuenca.cc:582</a></div></div>
+<div class="ttc" id="aclassCuenca_html_ac0279f54060a04f21d032dd08266b171"><div class="ttname"><a href="classCuenca.html#ac0279f54060a04f21d032dd08266b171">Cuenca::obtener_arbol_de_beneficios</a></div><div class="ttdeci">BinTree&lt; pair&lt; int, int &gt; &gt; obtener_arbol_de_beneficios(int id_prod_a_comprar, int id_prod_a_vender, int productos_a_comprar, int productos_a_vender, const BinTree&lt; string &gt; &amp;nodo)</div><div class="ttdoc">Obtiene un árbol de beneficios basado en los productos a comprar y vender.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00011">Cuenca.cc:11</a></div></div>
+<div class="ttc" id="aclassCuenca_html_adef9dac47f2c1d8120a55b54b497efda"><div class="ttname"><a href="classCuenca.html#adef9dac47f2c1d8120a55b54b497efda">Cuenca::Cuenca</a></div><div class="ttdeci">Cuenca()</div><div class="ttdoc">Constructor de la clase Cuenca.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00344">Cuenca.cc:344</a></div></div>
+<div class="ttc" id="aclassCuenca_html_ae99c61dad6943188905c3bea18ae12b6"><div class="ttname"><a href="classCuenca.html#ae99c61dad6943188905c3bea18ae12b6">Cuenca::leer_rio</a></div><div class="ttdeci">void leer_rio(const Cjt_Productos &amp;Productos, Barco &amp;Barco)</div><div class="ttdoc">Lee la forma del río.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8cc_source.html#l00348">Cuenca.cc:348</a></div></div>
+<div class="ttc" id="aclassCuenca_html_afb31f21b6a4c3a807458a946b6d72db7"><div class="ttname"><a href="classCuenca.html#afb31f21b6a4c3a807458a946b6d72db7">Cuenca::_it_mapa_ciudad</a></div><div class="ttdeci">map&lt; string, Ciudad &gt;::iterator _it_mapa_ciudad</div><div class="ttdoc">Iterador del mapa de la ciudad.</div><div class="ttdef"><b>Definition:</b> <a href="Cuenca_8hh_source.html#l00026">Cuenca.hh:26</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4
+</small></address>
+</body>
+</html>

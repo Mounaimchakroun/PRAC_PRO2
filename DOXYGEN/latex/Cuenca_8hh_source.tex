@@ -1,0 +1,65 @@
+\hypertarget{Cuenca_8hh_source}{}\doxysection{Cuenca.\+hh}
+\mbox{\hyperlink{Cuenca_8hh}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00005}00005 \textcolor{preprocessor}{\#ifndef HEADERFILE\_CUENCA}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00006}00006 \textcolor{preprocessor}{\#define HEADERFILE\_CUENCA}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00008}00008 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Ciudad_8hh}{Ciudad.hh}}"{}}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Barco_8hh}{Barco.hh}}"{}}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00011}00011 \textcolor{preprocessor}{\#ifndef NO\_DIAGRAM}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00012}00012 \textcolor{preprocessor}{\#include "{}BinTree.hh"{}}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00013}00013 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00019}\mbox{\hyperlink{classCuenca}{00019}} \textcolor{keyword}{class }\mbox{\hyperlink{classCuenca}{Cuenca}} \{}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00020}00020 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00022}\mbox{\hyperlink{classCuenca_a5251ab30457e1d6e592032e444e8afd9}{00022}}     BinTree<string> \mbox{\hyperlink{classCuenca_a5251ab30457e1d6e592032e444e8afd9}{\_cuenca}};}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00024}\mbox{\hyperlink{classCuenca_a43d0ac827a19845f1a3a3e9c83dafdce}{00024}}     map<string, Ciudad> \mbox{\hyperlink{classCuenca_a43d0ac827a19845f1a3a3e9c83dafdce}{\_mapa\_ciudades}};}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00026}\mbox{\hyperlink{classCuenca_afb31f21b6a4c3a807458a946b6d72db7}{00026}}     map<string, Ciudad>::iterator \mbox{\hyperlink{classCuenca_afb31f21b6a4c3a807458a946b6d72db7}{\_it\_mapa\_ciudad}};}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00037}00037     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_ab8171802c06a0e7f913a75d13a3b6c7a}{aux\_redistribuir}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keyword}{const} BinTree<string>\& arbol\_cuenca);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00049}00049     BinTree<string> \mbox{\hyperlink{classCuenca_a6e69871b2e770cf5119c0f84ffae8e8d}{aux\_lectura\_rio}}(\textcolor{keyword}{const} \mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Producto, map<string, Ciudad>\& new\_map);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00061}00061     list<pair<char,int>> \mbox{\hyperlink{classCuenca_a1c7617135d279fe30a960bc84b52c525}{recorrido\_con\_max\_beneficio}}(\textcolor{keyword}{const} BinTree<pair<int,int>>\& nodo);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00076}00076     BinTree<pair<int,int>> \mbox{\hyperlink{classCuenca_ac0279f54060a04f21d032dd08266b171}{obtener\_arbol\_de\_beneficios}}(\textcolor{keywordtype}{int} id\_prod\_a\_comprar, \textcolor{keywordtype}{int} id\_prod\_a\_vender, \textcolor{keywordtype}{int} productos\_a\_comprar, \textcolor{keywordtype}{int} productos\_a\_vender, \textcolor{keyword}{const} BinTree<string>\& nodo);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00089}00089     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a3f5ed2b7ecbaaa048ea33ee2e13777b8}{aux\_viajar}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}} \&Productos, \mbox{\hyperlink{classBarco}{Barco}}\& \mbox{\hyperlink{classBarco}{Barco}}, \textcolor{keywordtype}{int} id\_prod\_a\_comprar, \textcolor{keywordtype}{int} id\_prod\_a\_vender);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00091}00091 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00092}00092     \textcolor{comment}{// CONSTRUCTORES / DESTRUCTORES:}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00100}00100     \mbox{\hyperlink{classCuenca_adef9dac47f2c1d8120a55b54b497efda}{Cuenca}}();}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00102}00102     \textcolor{comment}{// MODIFICADORES:}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00113}00113     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_ae99c61dad6943188905c3bea18ae12b6}{leer\_rio}}(\textcolor{keyword}{const} \mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \mbox{\hyperlink{classBarco}{Barco}}\& \mbox{\hyperlink{classBarco}{Barco}});}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00123}00123     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a479eb1a264eb00a81c835065360131d4}{leer\_inventarios}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00134}00134     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a3bdfb9f327be05cc6e7864ace024e452}{leer\_inventario}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00146}00146     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_ab8815373b997a51380add6400d1ac8d8}{comerciar}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad\_1, \textcolor{keywordtype}{string} id\_ciudad\_2);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00156}00156     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a2f6db879561063fd0eba28356263d2e5}{redistribuir}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00168}00168     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a28467bd2ca885263abfb738c0911e3c0}{poner\_prod}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad, \textcolor{keywordtype}{int} id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00180}00180     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a07f69ab13c1feab4a8e13faf7adba653}{modificar\_prod}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad, \textcolor{keywordtype}{int} id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00192}00192     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a4507acfe769fc584927d231f269c1422}{quitar\_prod}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad, \textcolor{keywordtype}{int} id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00193}00193 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00203}00203     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_ab58884679b201cb3b22a286a01e9925e}{hacer\_viaje}}(\mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \mbox{\hyperlink{classBarco}{Barco}}\& \mbox{\hyperlink{classBarco}{Barco}});}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00205}00205     \textcolor{comment}{// ESCRITURA}}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00217}00217     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a4eece4823d3668474fe79848c788049e}{consultar\_prod}}(\textcolor{keyword}{const} \mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}}\& Productos, \textcolor{keywordtype}{string} id\_ciudad, \textcolor{keywordtype}{int} id\_producto);}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00218}00218     }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00227}00227     \textcolor{keywordtype}{void} \mbox{\hyperlink{classCuenca_a0bead6a42bd8cb71637944ecffb9e113}{escribir\_ciudad}}(\textcolor{keywordtype}{string} id\_ciudad) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00228}00228 \};}
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{Cuenca_8hh_source_l00230}00230 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// HEADERFILE\_CUENCA}}
+
+\end{DoxyCode}

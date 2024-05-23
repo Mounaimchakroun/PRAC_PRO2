@@ -1,0 +1,183 @@
+\hypertarget{program_8cc}{}\doxysection{Referencia del Archivo program.\+cc}
+\label{program_8cc}\index{program.cc@{program.cc}}
+{\ttfamily \#include \char`\"{}Cuenca.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Cjt\+\_\+\+Productos.\+hh\char`\"{}}\newline
+Dependencia gráfica adjunta para program.\+cc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{program_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\+\_\+comando}} (string input)
+\item 
+int \mbox{\hyperlink{program_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{program_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{program_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{program.cc@{program.cc}!main@{main}}
+\index{main@{main}!program.cc@{program.cc}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definición en la línea \mbox{\hyperlink{program_8cc_source_l00148}{148}} del archivo \mbox{\hyperlink{program_8cc_source}{program.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148           \{}
+\DoxyCodeLine{00149     \textcolor{keywordtype}{string} input;}
+\DoxyCodeLine{00150     \mbox{\hyperlink{classCuenca}{Cuenca}} Cuenca\_Fluvial;}
+\DoxyCodeLine{00151     \mbox{\hyperlink{classBarco}{Barco}} \mbox{\hyperlink{classBarco}{Barco}};}
+\DoxyCodeLine{00152     \mbox{\hyperlink{classCjt__Productos}{Cjt\_Productos}} Productos;}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154     \textcolor{comment}{//INICIALIZAR / PRODUCTOS -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00155     \textcolor{keywordtype}{int} max\_productos;}
+\DoxyCodeLine{00156 }
+\DoxyCodeLine{00157     cin >> max\_productos;}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159     Productos.\mbox{\hyperlink{classCjt__Productos_a89f26cef3a817ca7f461f32990477960}{agregar\_productos}}(max\_productos);}
+\DoxyCodeLine{00160     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00161     \textcolor{comment}{//INICIALIZAR / RIO -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00162     Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_ae99c61dad6943188905c3bea18ae12b6}{leer\_rio}}(Productos,\mbox{\hyperlink{classBarco}{Barco}});}
+\DoxyCodeLine{00163     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00164     \textcolor{comment}{//INICIALIZAR / BARCO -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00165     \mbox{\hyperlink{classBarco}{Barco}}.\mbox{\hyperlink{classBarco_a0a278455a6f879de77030e462b18bd8b}{modificar\_barco}}(Productos);}
+\DoxyCodeLine{00166     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00167 }
+\DoxyCodeLine{00168     \textcolor{keywordflow}{while} (cin >> input and input != \textcolor{stringliteral}{"{}fin"{}})}
+\DoxyCodeLine{00169     \{}
+\DoxyCodeLine{00170         \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}leer\_rio"{}} or input == \textcolor{stringliteral}{"{}lr"{}})\{}
+\DoxyCodeLine{00171             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00172             cout <<endl;}
+\DoxyCodeLine{00173             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_ae99c61dad6943188905c3bea18ae12b6}{leer\_rio}}(Productos,\mbox{\hyperlink{classBarco}{Barco}});}
+\DoxyCodeLine{00174         \}}
+\DoxyCodeLine{00175         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}leer\_inventario"{}} or input == \textcolor{stringliteral}{"{}li"{}})\{}
+\DoxyCodeLine{00176             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00177             cin >> id\_ciudad;}
+\DoxyCodeLine{00178             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00179             cout <<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<endl;}
+\DoxyCodeLine{00180             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a3bdfb9f327be05cc6e7864ace024e452}{leer\_inventario}}(Productos,id\_ciudad);}
+\DoxyCodeLine{00181         \}}
+\DoxyCodeLine{00182         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}leer\_inventarios"{}} or input == \textcolor{stringliteral}{"{}ls"{}})\{}
+\DoxyCodeLine{00183             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input); }
+\DoxyCodeLine{00184             cout<<endl;}
+\DoxyCodeLine{00185             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a479eb1a264eb00a81c835065360131d4}{leer\_inventarios}}(Productos);}
+\DoxyCodeLine{00186         \}}
+\DoxyCodeLine{00187         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}modificar\_barco"{}} or input == \textcolor{stringliteral}{"{}mb"{}})\{}
+\DoxyCodeLine{00188             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00189             cout<<endl;}
+\DoxyCodeLine{00190             \mbox{\hyperlink{classBarco}{Barco}}.\mbox{\hyperlink{classBarco_a0a278455a6f879de77030e462b18bd8b}{modificar\_barco}}(Productos);}
+\DoxyCodeLine{00191         \}}
+\DoxyCodeLine{00192         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}escribir\_barco"{}} or input == \textcolor{stringliteral}{"{}eb"{}})\{}
+\DoxyCodeLine{00193             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00194             cout<<endl;}
+\DoxyCodeLine{00195             \mbox{\hyperlink{classBarco}{Barco}}.\mbox{\hyperlink{classBarco_a3f1c26f2f0565e375924dae85b2e89a0}{escribir\_barco}}();}
+\DoxyCodeLine{00196         \}}
+\DoxyCodeLine{00197         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}consultar\_num"{}} or input == \textcolor{stringliteral}{"{}cn"{}})\{}
+\DoxyCodeLine{00198             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00199             cout<<endl;}
+\DoxyCodeLine{00200             cout << Productos.\mbox{\hyperlink{classCjt__Productos_a4ab6fe8f34c500b84ddedd3f7f5785d4}{consultar\_num}}() <<endl;}
+\DoxyCodeLine{00201         \}}
+\DoxyCodeLine{00202         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}agregar\_productos"{}} or input == \textcolor{stringliteral}{"{}ap"{}})\{}
+\DoxyCodeLine{00203             \textcolor{keywordtype}{int} n;}
+\DoxyCodeLine{00204             cin >> n;}
+\DoxyCodeLine{00205             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00206             cout<<\textcolor{stringliteral}{"{} "{}}<< n <<endl;}
+\DoxyCodeLine{00207             Productos.\mbox{\hyperlink{classCjt__Productos_a89f26cef3a817ca7f461f32990477960}{agregar\_productos}}(n);}
+\DoxyCodeLine{00208         \}}
+\DoxyCodeLine{00209         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}escribir\_producto"{}} or input == \textcolor{stringliteral}{"{}ep"{}})\{}
+\DoxyCodeLine{00210             \textcolor{keywordtype}{int} id\_producto;}
+\DoxyCodeLine{00211             cin >> id\_producto;}
+\DoxyCodeLine{00212             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00213             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_producto <<endl;}
+\DoxyCodeLine{00214             Productos.\mbox{\hyperlink{classCjt__Productos_a5d54286474be20b47c97628fe38c2190}{escribir\_producto}}(id\_producto);}
+\DoxyCodeLine{00215         \}}
+\DoxyCodeLine{00216         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}escribir\_ciudad"{}} or input == \textcolor{stringliteral}{"{}ec"{}})\{}
+\DoxyCodeLine{00217             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00218             cin >> id\_ciudad;}
+\DoxyCodeLine{00219             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00220             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<endl;}
+\DoxyCodeLine{00221             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a0bead6a42bd8cb71637944ecffb9e113}{escribir\_ciudad}}(id\_ciudad);}
+\DoxyCodeLine{00222         \}}
+\DoxyCodeLine{00223         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}poner\_prod"{}} or input == \textcolor{stringliteral}{"{}pp"{}})\{}
+\DoxyCodeLine{00224             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00225             \textcolor{keywordtype}{int} id\_producto;}
+\DoxyCodeLine{00226             cin >> id\_ciudad >> id\_producto;}
+\DoxyCodeLine{00227             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00228             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<\textcolor{stringliteral}{"{} "{}}<< id\_producto <<endl;}
+\DoxyCodeLine{00229             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a28467bd2ca885263abfb738c0911e3c0}{poner\_prod}}(Productos, id\_ciudad, id\_producto);}
+\DoxyCodeLine{00230         \}}
+\DoxyCodeLine{00231         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}modificar\_prod"{}} or input == \textcolor{stringliteral}{"{}mp"{}})\{}
+\DoxyCodeLine{00232             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00233             \textcolor{keywordtype}{int} id\_producto;}
+\DoxyCodeLine{00234             cin >> id\_ciudad >> id\_producto;}
+\DoxyCodeLine{00235             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00236             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<\textcolor{stringliteral}{"{} "{}}<< id\_producto <<endl;}
+\DoxyCodeLine{00237             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a07f69ab13c1feab4a8e13faf7adba653}{modificar\_prod}}(Productos,id\_ciudad,id\_producto);}
+\DoxyCodeLine{00238         \}}
+\DoxyCodeLine{00239         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}quitar\_prod"{}} or input == \textcolor{stringliteral}{"{}qp"{}})\{}
+\DoxyCodeLine{00240             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00241             \textcolor{keywordtype}{int} id\_producto;}
+\DoxyCodeLine{00242             cin >> id\_ciudad >> id\_producto;}
+\DoxyCodeLine{00243             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00244             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<\textcolor{stringliteral}{"{} "{}}<< id\_producto <<endl;}
+\DoxyCodeLine{00245             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a4507acfe769fc584927d231f269c1422}{quitar\_prod}}(Productos,id\_ciudad,id\_producto);}
+\DoxyCodeLine{00246         \}}
+\DoxyCodeLine{00247         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}consultar\_prod"{}} or input == \textcolor{stringliteral}{"{}cp"{}})\{}
+\DoxyCodeLine{00248             \textcolor{keywordtype}{string} id\_ciudad;}
+\DoxyCodeLine{00249             \textcolor{keywordtype}{int} id\_producto;}
+\DoxyCodeLine{00250             cin >> id\_ciudad >> id\_producto;}
+\DoxyCodeLine{00251             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00252             cout<<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad <<\textcolor{stringliteral}{"{} "{}}<< id\_producto <<endl;}
+\DoxyCodeLine{00253             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a4eece4823d3668474fe79848c788049e}{consultar\_prod}}(Productos, id\_ciudad, id\_producto);}
+\DoxyCodeLine{00254         \}}
+\DoxyCodeLine{00255         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}comerciar"{}} or input == \textcolor{stringliteral}{"{}co"{}})\{}
+\DoxyCodeLine{00256             \textcolor{keywordtype}{string} id\_ciudad\_1, id\_ciudad\_2;}
+\DoxyCodeLine{00257             cin >> id\_ciudad\_1 >> id\_ciudad\_2;}
+\DoxyCodeLine{00258             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00259             cout <<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad\_1 <<\textcolor{stringliteral}{"{} "{}}<< id\_ciudad\_2 <<endl;}
+\DoxyCodeLine{00260             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_ab8815373b997a51380add6400d1ac8d8}{comerciar}}(Productos,id\_ciudad\_1,id\_ciudad\_2);}
+\DoxyCodeLine{00261         \}}
+\DoxyCodeLine{00262         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}redistribuir"{}} or input == \textcolor{stringliteral}{"{}re"{}})\{}
+\DoxyCodeLine{00263             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00264             cout<<endl;}
+\DoxyCodeLine{00265             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_a2f6db879561063fd0eba28356263d2e5}{redistribuir}}(Productos);}
+\DoxyCodeLine{00266         \}}
+\DoxyCodeLine{00267         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}hacer\_viaje"{}} or input == \textcolor{stringliteral}{"{}hv"{}})\{}
+\DoxyCodeLine{00268             \mbox{\hyperlink{program_8cc_a2dfa931500aed447d12befee5eb2e75d}{mostrar\_comando}}(input);}
+\DoxyCodeLine{00269             cout<<endl;}
+\DoxyCodeLine{00270             Cuenca\_Fluvial.\mbox{\hyperlink{classCuenca_ab58884679b201cb3b22a286a01e9925e}{hacer\_viaje}}(Productos,\mbox{\hyperlink{classBarco}{Barco}});}
+\DoxyCodeLine{00271         \}}
+\DoxyCodeLine{00272         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (input == \textcolor{stringliteral}{"{}//"{}})\{}
+\DoxyCodeLine{00273             \textcolor{keywordtype}{string} residuo;}
+\DoxyCodeLine{00274             getline(cin,residuo);}
+\DoxyCodeLine{00275         \}}
+\DoxyCodeLine{00276     \}}
+\DoxyCodeLine{00277 }
+\DoxyCodeLine{00278 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{program_8cc_a2dfa931500aed447d12befee5eb2e75d}\label{program_8cc_a2dfa931500aed447d12befee5eb2e75d}} 
+\index{program.cc@{program.cc}!mostrar\_comando@{mostrar\_comando}}
+\index{mostrar\_comando@{mostrar\_comando}!program.cc@{program.cc}}
+\doxysubsubsection{\texorpdfstring{mostrar\_comando()}{mostrar\_comando()}}
+{\footnotesize\ttfamily void mostrar\+\_\+comando (\begin{DoxyParamCaption}\item[{string}]{input }\end{DoxyParamCaption})}
+
+
+
+Definición en la línea \mbox{\hyperlink{program_8cc_source_l00143}{143}} del archivo \mbox{\hyperlink{program_8cc_source}{program.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143                                   \{}
+\DoxyCodeLine{00144     cout<< \textcolor{charliteral}{'\#'} << input;}
+\DoxyCodeLine{00145 \}}
+
+\end{DoxyCode}
