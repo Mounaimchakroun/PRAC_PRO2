@@ -12,7 +12,7 @@ BinTree<pair<int,int>> Cuenca::obtener_arbol_de_beneficios(int id_prod_a_comprar
     // Caso Base ########################################################################################
     
     // Si el nodo es vacío
-    if (nodo.empty()) return BinTree<pair<int,int>>(); 
+    if (nodo.empty()) return BinTree<pair<int,int>>();
 
     // No hay más productos que vender
     if (productos_a_comprar + productos_a_vender == 0) return BinTree<pair<int,int>>();

@@ -20,6 +20,7 @@ using namespace std;
  * La clase Cjt_Productos mantiene una estructura de datos que almacena información sobre varios productos.
  */
 class Cjt_Productos {
+
 private:
     /**
      * @brief Mapa de productos.

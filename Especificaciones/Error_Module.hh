@@ -7,8 +7,9 @@
 
 #ifndef NO_DIAGRAM
 #include <iostream>
-using namespace std;
 #endif
+
+using namespace std;
 
 /**
  * @brief Notifica un error especificado por su número.
