@@ -57,6 +57,7 @@ public:
      * @param id_producto Identificador del producto.
      * @param unidades_poseidas Unidades disponibles del producto.
      * @param unidades_necesarias Unidades necesarias del producto.
+     * @param notificacion_de_errores Indica si se deben notificar errores.
      * @return true si el producto se añadió con éxito, false en caso contrario.
      *
      * @pre El inventario puede estar vacío o no.
@@ -159,3 +160,4 @@ public:
 };
 
 #endif // HEADERFILE_CIUDAD
+

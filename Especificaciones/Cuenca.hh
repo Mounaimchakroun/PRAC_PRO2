@@ -161,6 +161,8 @@ public:
      * @param Productos Conjunto de productos.
      * @param id_ciudad Nombre de la ciudad.
      * @param id_producto Identificador del producto.
+     * @param unidades_poseidas Las unidades poseidas del producto.
+     * @param unidades_necesarias Las unidades necesarias del producto.
      * 
      * @pre Se dispone de un conjunto de productos, el nombre de una ciudad y el identificador de un producto.
      * @post Si es posible, se añade el producto al inventario de la ciudad.
@@ -173,6 +175,8 @@ public:
      * @param Productos Conjunto de productos.
      * @param id_ciudad Nombre de la ciudad.
      * @param id_producto Identificador del producto.
+     * @param unidades_poseidas Las unidades poseidas del producto.
+     * @param unidades_necesarias Las unidades necesarias del producto.
      * 
      * @pre Se dispone de un conjunto de productos, el nombre de una ciudad y el identificador de un producto.
      * @post Si es posible, se modifica el producto en el inventario de la ciudad.
