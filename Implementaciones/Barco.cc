@@ -111,4 +111,3 @@ int Barco::consultar_cantidad_a_comprar() const{
     // Obtenemos la cantidad del producto que compramos
     return this->_cantidad_producto_a_comprar;
 }
-

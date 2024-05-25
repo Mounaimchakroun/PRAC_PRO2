@@ -394,7 +394,7 @@ void Cuenca::leer_inventario(Cjt_Productos& Productos,string id_ciudad){
             // Si las unidades necesarias son superiores a 0
             if (unidades_necesarias > 0){
                 // Introducimos en la ciudad el producto
-                _it_mapa_ciudad->second.poner_prod_c(Productos, id_producto,unidades_poseidas,unidades_necesarias);
+                _it_mapa_ciudad->second.poner_prod_c(Productos, id_producto,unidades_poseidas,unidades_necesarias, false);
             }
             else { // En caso contrario
                 // Notificamos del error obtenido
@@ -415,88 +415,72 @@ void Cuenca::leer_inventarios(Cjt_Productos& Productos){
     //---------------------------------------------------------------------------------------
 }
 
-void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto){
-    // Unidades poseidas y necesarias
-    int unidades_poseidas, unidades_necesarias;
-    // Introducimos las unidades poseídas y necesarias
-    cin >> unidades_poseidas >> unidades_necesarias;
+void Cuenca::poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto, int unidades_poseidas, int unidades_necesarias){
     // Buscamos la ciudad deseada
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
     // Si las unidades necesarias son estrictamente positiva
     if (unidades_necesarias > 0){
+         
+        if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) error_notification(1);
+        else {
         
-        bool proceder = false;
-        // Si la ciudad existe
-        if (_it_mapa_ciudad != this->_mapa_ciudades.end())
-            // Ponemos el producto deseado y confirmamos la operacion
-            proceder = _it_mapa_ciudad->second.poner_prod_c(Productos,id_producto,unidades_poseidas,unidades_necesarias);
-        else { // En caso contrario
-            // Si el producto no existe imprimimos el error de no existencia
-            if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) error_notification(1);
-            else error_notification(2); // En caso contrario imprimimos el error de no existencia de ciudad
-        }
+                bool proceder = false;
+                // Si la ciudad existe
+                if (_it_mapa_ciudad != this->_mapa_ciudades.end()) 
+                    // Ponemos el producto deseado y confirmamos la operacion
+                    proceder = _it_mapa_ciudad->second.poner_prod_c(Productos,id_producto,unidades_poseidas,unidades_necesarias, true);
+                else { // En caso contrario            
+                    error_notification(2); // En caso contrario imprimimos el error de no existencia de ciudad
+                }
 
-        if (proceder) { // Si la operacion se ha echo con exito
-            // Si la ciudad no existe
-            if (_it_mapa_ciudad == this->_mapa_ciudades.end()) {
-                // Imprimimos el error de ciudad no existe
-                error_notification(2);
-            }
-            else { // En caso contrario, la ciudad existe
-                //Imprimimos el peso y volumen total
-                cout << _it_mapa_ciudad->second.consultar_peso_total();
-                cout <<" ";
-                cout << _it_mapa_ciudad->second.consultar_volumen_total();
-                cout<<endl;
-                //----------------------------------
-            }
-        }
+                if (proceder) { // Si la operacion se ha echo con exito
+                        //Imprimimos el peso y volumen total
+                        cout << _it_mapa_ciudad->second.consultar_peso_total();
+                        cout <<" ";
+                        cout << _it_mapa_ciudad->second.consultar_volumen_total();
+                        cout<<endl;
+                        //----------------------------------
+                }
+       }
     }
     else { // En caso contrario imprimimos un error 
-        error_notification(6);
+        //error_notification(6);
+        return;
     }
 }
 
-void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto){
-    // Unidades poseidas y necesarias
-    int unidades_poseidas, unidades_neccesarias;
-    // Introducimos las unidades poseídas y necesarias
-    cin >> unidades_poseidas >> unidades_neccesarias;
+void Cuenca::modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto, int unidades_poseidas, int unidades_necesarias){
     // Buscamos la ciudad deseada
     this->_it_mapa_ciudad = this->_mapa_ciudades.find(id_ciudad);
     // Si las unidades necesarias son estrictamente positiva
-    if (unidades_neccesarias > 0){
-        bool proceder = false;
-        // Si la ciudad existe
-        if (_it_mapa_ciudad != this->_mapa_ciudades.end())
-            // Modificamos el producto deseado y confirmamos la operacion
-            proceder = _it_mapa_ciudad->second.modificar_prod_c(Productos,id_producto,unidades_poseidas,unidades_neccesarias, true);
-        else { // En caso contrario
-            // Si el producto no existe imprimimos el error de no existencia
-            if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) error_notification(1);
-            else error_notification(2); // En caso contrario imprimimos el error de no existencia de ciudad
-        }
+    if (unidades_necesarias > 0){
+         
+        if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) error_notification(1);
+        else {
+        
+                bool proceder = false;
+                // Si la ciudad existe
+                if (_it_mapa_ciudad != this->_mapa_ciudades.end()) 
+                    // Ponemos el producto deseado y confirmamos la operacion
+                    proceder = _it_mapa_ciudad->second.modificar_prod_c(Productos,id_producto,unidades_poseidas,unidades_necesarias, true);
+                else { // En caso contrario            
+                    error_notification(2); // En caso contrario imprimimos el error de no existencia de ciudad
+                }
 
-        if (proceder){ // Si la operacion se ha echo con exito
-            // Si la ciudad no existe
-            if (_it_mapa_ciudad == this->_mapa_ciudades.end()) {
-                // Imprimimos el error de ciudad no existe
-                error_notification(2);
-            }
-            else { // En caso contrario, la ciudad existe
-                //Imprimimos el peso y volumen total 
-                cout << _it_mapa_ciudad->second.consultar_peso_total();
-                cout <<" ";
-                cout << _it_mapa_ciudad->second.consultar_volumen_total();
-                cout<<endl;
-                //----------------------------------
-            }
-        }
+                if (proceder) { // Si la operacion se ha echo con exito
+                        //Imprimimos el peso y volumen total
+                        cout << _it_mapa_ciudad->second.consultar_peso_total();
+                        cout <<" ";
+                        cout << _it_mapa_ciudad->second.consultar_volumen_total();
+                        cout<<endl;
+                        //----------------------------------
+                }
+       }
     }
     else { // En caso contrario imprimimos un error 
-        error_notification(6);
+        //error_notification(6);
+        return;
     }
-
 }
 
 void Cuenca::quitar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto){

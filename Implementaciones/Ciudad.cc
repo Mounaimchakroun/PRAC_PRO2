@@ -9,7 +9,7 @@ Ciudad::Ciudad(){
 
 }
 
-bool Ciudad::poner_prod_c(Cjt_Productos& Productos, int id_producto, int unidades_poseidas, int unidades_necesarias){
+bool Ciudad::poner_prod_c(Cjt_Productos& Productos, int id_producto, int unidades_poseidas, int unidades_necesarias, bool notificacion_error){
     // Comprobamos que el producto exista
     if ((id_producto <= 0) or (id_producto >= Productos.consultar_num() + 1)) {
         error_notification(1);
@@ -19,7 +19,7 @@ bool Ciudad::poner_prod_c(Cjt_Productos& Productos, int id_producto, int unidade
     // Buscamos el producto
     this->_it_Inventario = this->_Inventario.find(id_producto);
     // Si el producto ya está en el inventario levantamos bandera de error por ya existencia del producto
-    if (this->_it_Inventario != this->_Inventario.end()) {
+    if ((this->_it_Inventario != this->_Inventario.end()) and (notificacion_error)) {
         error_notification(4);
         // Información no válida con errores
         return false;

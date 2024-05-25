@@ -165,7 +165,7 @@ public:
      * @pre Se dispone de un conjunto de productos, el nombre de una ciudad y el identificador de un producto.
      * @post Si es posible, se añade el producto al inventario de la ciudad.
      */
-    void poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto);
+    void poner_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto, int unidades_poseidas, int unidades_necesarias);
 
     /**
      * @brief Modifica un producto en el inventario de una ciudad si es posible.
@@ -177,7 +177,7 @@ public:
      * @pre Se dispone de un conjunto de productos, el nombre de una ciudad y el identificador de un producto.
      * @post Si es posible, se modifica el producto en el inventario de la ciudad.
      */
-    void modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto);
+    void modificar_prod(Cjt_Productos& Productos, string id_ciudad, int id_producto, int unidades_poseidas, int unidades_necesarias);
 
     /**
      * @brief Quita un producto del inventario de una ciudad si es posible.

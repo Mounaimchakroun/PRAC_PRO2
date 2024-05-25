@@ -62,7 +62,7 @@ public:
      * @pre El inventario puede estar vacío o no.
      * @post Se añade el producto especificado al inventario con las cantidades poseídas y necesarias.
      */
-    bool poner_prod_c(Cjt_Productos& Productos, int id_producto, int unidades_poseidas, int unidades_necesarias);
+    bool poner_prod_c(Cjt_Productos& Productos, int id_producto, int unidades_poseidas, int unidades_necesarias, bool notificacion_de_errores);
 
     /**
      * @brief Modifica un producto existente en el inventario de la ciudad.
