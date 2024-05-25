@@ -128,6 +128,7 @@
 
 */
 
+
 /** @file Pro2.cc
     @brief Programa principal
 */
@@ -144,6 +145,7 @@ using namespace std;
 void mostrar_comando(string input){
     cout<< '#' << input;
 }
+
 
 int main(){
     string input;
@@ -223,18 +225,26 @@ int main(){
         else if (input == "poner_prod" or input == "pp"){
             string id_ciudad;
             int id_producto;
+            // Unidades poseidas y necesarias
+            int unidades_poseidas, unidades_necesarias;
             cin >> id_ciudad >> id_producto;
+            // Introducimos las unidades poseídas y necesarias
+            cin >> unidades_poseidas >> unidades_necesarias;
             mostrar_comando(input);
             cout<<" "<< id_ciudad <<" "<< id_producto <<endl;
-            Cuenca_Fluvial.poner_prod(Productos, id_ciudad, id_producto);
+            Cuenca_Fluvial.poner_prod(Productos, id_ciudad, id_producto, unidades_poseidas, unidades_necesarias);
         }
         else if (input == "modificar_prod" or input == "mp"){
             string id_ciudad;
             int id_producto;
+            // Unidades poseidas y necesarias
+            int unidades_poseidas, unidades_necesarias;
             cin >> id_ciudad >> id_producto;
+            // Introducimos las unidades poseídas y necesarias
+            cin >> unidades_poseidas >> unidades_necesarias;
             mostrar_comando(input);
             cout<<" "<< id_ciudad <<" "<< id_producto <<endl;
-            Cuenca_Fluvial.modificar_prod(Productos,id_ciudad,id_producto);
+            Cuenca_Fluvial.modificar_prod(Productos,id_ciudad,id_producto, unidades_poseidas, unidades_necesarias);
         }
         else if (input == "quitar_prod" or input == "qp"){
             string id_ciudad;
